@@ -95,14 +95,15 @@
              </div>
          </div>
      </li>
-     <li class="nav-item">
+     <li class="nav-item my-5">
          <!-- Authentication -->
          <form method="POST" action="{{ route('logout') }}">
             @csrf
             <x-jet-dropdown-link href="{{ route('logout') }}" style="color:white !important"
                      onclick="event.preventDefault();
                             this.closest('form').submit();">
-                {{ __('Log Out') }}
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="ml-1">Log out</span>
             </x-jet-dropdown-link>
         </form>
      </li>
