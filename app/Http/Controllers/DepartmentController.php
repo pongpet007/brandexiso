@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CategoryController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categorys = DB::table('company_category')->get();
+        $title = "Brandex ISO";
+        $keyword = "";
+        $description = "";
 
-        return view('admin.pages.category.index',compact('categorys'));
+        $departments = DB::table('department')->get();
 
+        return view("admin.pages.department.show", compact('title', 'keyword', 'description', 'departments'));
     }
 
     /**
@@ -27,8 +30,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-
-        return view('admin.pages.category.form');
+        $method = "Add";
+        return view('admin.pages.department.form', compact('method'));
     }
 
     /**
@@ -39,8 +42,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        echo "store ";
+        $request->validate([
+            'dep_name' => 'required'
+        ]);
+
+        $dep_name = $request->input("dep_name");
+        DB::table("department")->insert([
+            'dep_name' => $dep_name
+        ]);
+        return redirect("Department");
     }
 
     /**
@@ -52,7 +62,6 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
-        echo "show $id";
     }
 
     /**
@@ -64,7 +73,10 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        echo "edit $id";
+        $department = DB::table("department")->where('dep_id', $id)->first();
+
+        $method = "Edit";
+        return view('admin.pages.department.form', compact('method', 'department'));
     }
 
     /**
@@ -77,7 +89,18 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        echo "Update $id";
+        $request->validate([
+            'dep_name' => 'required'
+        ]);
+
+        $dep_name = $request->input("dep_name");
+
+        DB::table("department")
+            ->where('dep_id', $id)
+            ->update([
+                'dep_name' => $dep_name
+            ]);
+        return redirect("Department");
     }
 
     /**
@@ -88,7 +111,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
-        echo "destroy $id";
+        DB::table("department")
+            ->where('dep_id', $id)
+            ->delete();
+        return redirect("Department");
     }
 }

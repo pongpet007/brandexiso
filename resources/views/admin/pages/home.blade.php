@@ -8,7 +8,7 @@
     {{-- =========================================================================================================== --}}
     {{-- Breadcrumb --}}
     @push('breadcrumb')
-        <div class="d-sm-flex align-items-center justify-content-between mb-1">
+        <div class="mb-1">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
@@ -44,12 +44,12 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="success" title="All Product" amount="500"></x-card-border-left>
+            <x-card-border-left type="success" title="All Department" amount="500"></x-card-border-left>
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="info" title="All Category" amount="30"
+            <x-card-border-left type="info" title="All User" amount="30"
                 icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
         </div>
 

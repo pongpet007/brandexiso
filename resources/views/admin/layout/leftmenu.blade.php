@@ -24,17 +24,14 @@
          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
              aria-controls="collapseTwo">
              <i class="fas fa-fw fa-cog"></i>
-             <span>General & Setting</span>
+             <span>User & Department</span>
          </a>
          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">General & Setting:</h6>
-                 <a class="collapse-item" href="{{ url('Setting') }}">Setting</a>
-                 <a class="collapse-item" href="{{ url('Country') }}">Country</a>
-                 <a class="collapse-item" href="{{ url('Company') }}">Company</a>
-                 <a class="collapse-item" href="{{ url('Menu') }}">Manage Menu</a>
-                 <a class="collapse-item" href="{{ url('Content') }}">Manage Content</a>
-                 <a class="collapse-item" href="{{ url('Splash') }}">Splash page</a>
+                 <h6 class="collapse-header">User & Department:</h6>
+                 <a class="collapse-item" href="{{ url('User') }}">User</a>
+                 <a class="collapse-item" href="{{ url('UserControl') }}">User Control</a>
+                 <a class="collapse-item" href="{{ url('Department') }}">Department</a>
              </div>
          </div>
      </li>
@@ -97,6 +94,17 @@
                  <a class="collapse-item" href="{{ url('Quotation') }}">Quotation</a>
              </div>
          </div>
+     </li>
+     <li class="nav-item">
+         <!-- Authentication -->
+         <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <x-jet-dropdown-link href="{{ route('logout') }}" style="color:white !important"
+                     onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                {{ __('Log Out') }}
+            </x-jet-dropdown-link>
+        </form>
      </li>
 
 

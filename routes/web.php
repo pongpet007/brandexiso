@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -30,10 +31,13 @@ use App\Http\Controllers\HomeController;
 // );
 
 Route::resource('Category', CategoryController::class);
+
 Route::get('Category/destroy/{id}', [CategoryController::class, "destroy"]);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [HomeController::class, "index"])->name('home');
+    Route::resource('Department', DepartmentController::class);
+
     Route::get('dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
