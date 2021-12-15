@@ -1,15 +1,20 @@
 <x-admin.layout>
     {{-- Meta tag --}}
     @push('metatag')
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Brandex Admin Dashboard</title>
+        <meta name="description" content="{{ $description }}">
+        <meta name="keyword" content="{{ $keyword }}">
+        <title>{{ $title }}</title>
     @endpush
     {{-- =========================================================================================================== --}}
     {{-- Breadcrumb --}}
     @push('breadcrumb')
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <div class="d-sm-flex align-items-center justify-content-between mb-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                </ol>
+              </nav>
         </div>
     @endpush
     {{-- =========================================================================================================== --}}
@@ -44,31 +49,37 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="info" title="All Category" amount="30" icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
+            <x-card-border-left type="info" title="All Category" amount="30"
+                icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="danger" title="All Category" amount="30" icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
+            <x-card-border-left type="danger" title="All Category" amount="30"
+                icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
         </div>
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="warning" title="All Category" amount="30" icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
+            <x-card-border-left type="warning" title="All Category" amount="30"
+                icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
         </div>
-         <!-- Pending Requests Card Example -->
-         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="primary" title="All Category" amount="30" icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
-        </div>
-
-         <!-- Pending Requests Card Example -->
-         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="secondary" title="All Category" amount="30" icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <x-card-border-left type="primary" title="All Category" amount="30"
+                icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
         </div>
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="dark" title="All Category" amount="30" icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
+            <x-card-border-left type="secondary" title="All Category" amount="30"
+                icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <x-card-border-left type="dark" title="All Category" amount="30"
+                icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
         </div>
 
     </div>

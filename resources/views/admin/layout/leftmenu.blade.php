@@ -2,8 +2,10 @@
  <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
      <!-- Sidebar - Brand -->
-     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-         <div class="sidebar-brand-text mx-3">Admin Panel</div>
+     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
+         <div class="sidebar-brand-text mx-3">
+             <img src="{{asset("assets_admin/logo.svg")}}" width="200" alt="" class="img-fluid">
+         </div>
      </a>
 
      <!-- Divider -->

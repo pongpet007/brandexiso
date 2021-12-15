@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,31 +16,29 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
 
-    // $locale = App::currentLocale();
-    // dd($locale);
-    return view('admin.pages.home');
-})->name('home');
 
-Route::get('/products', function () {
+// Route::get('/products', function () {
+//     return view('admin.pages.products');
+// })->name('products');
 
-    return view('admin.pages.products');
-})->name('products');
-
-Route::get(
-    '/theme',
-    function () {
-        return view("admin.theme");
-    }
-);
+// Route::get(
+//     '/theme',
+//     function () {
+//         return view("admin.theme");
+//     }
+// );
 
 Route::resource('Category', CategoryController::class);
-Route::get('Category/destroy/{id}', [CategoryController::class,"destroy"]);
+Route::get('Category/destroy/{id}', [CategoryController::class, "destroy"]);
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function(){
-
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/', [HomeController::class, "index"])->name('home');
+    Route::get('dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
+
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');

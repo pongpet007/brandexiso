@@ -8,9 +8,14 @@
     {{-- =========================================================================================================== --}}
     {{-- Breadcrumb --}}
     @push('breadcrumb')
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Category</h1>
-        </div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-1">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Category</li>
+            </ol>
+          </nav>
+    </div>
     @endpush
     {{-- =========================================================================================================== --}}
     {{-- Css Other --}}
