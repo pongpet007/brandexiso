@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserControlController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $title = "Brandex ISO";
+        $keyword = "";
+        $description = "";
+
+        $departments = DB::table('department')->get();
+
+        return view("admin.pages.usercontrol.show", compact('title', 'keyword', 'description', 'departments'));
     }
 
     /**
@@ -23,7 +30,8 @@ class UserControlController extends Controller
      */
     public function create()
     {
-        //
+        $method = "Add";
+        return view('admin.pages.usercontrol.form', compact('method'));
     }
 
     /**
@@ -34,7 +42,15 @@ class UserControlController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dep_name' => 'required'
+        ]);
+
+        $dep_name = $request->input("dep_name");
+        DB::table("department")->insert([
+            'dep_name' => $dep_name
+        ]);
+        return redirect("Department");
     }
 
     /**
@@ -57,6 +73,10 @@ class UserControlController extends Controller
     public function edit($id)
     {
         //
+        $department = DB::table("department")->where('dep_id', $id)->first();
+
+        $method = "Edit";
+        return view('admin.pages.usercontrol.form', compact('method', 'department'));
     }
 
     /**
@@ -69,6 +89,18 @@ class UserControlController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'dep_name' => 'required'
+        ]);
+
+        $dep_name = $request->input("dep_name");
+
+        DB::table("department")
+            ->where('dep_id', $id)
+            ->update([
+                'dep_name' => $dep_name
+            ]);
+        return redirect("Department");
     }
 
     /**
@@ -79,6 +111,9 @@ class UserControlController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table("department")
+            ->where('dep_id', $id)
+            ->delete();
+        return redirect("Department");
     }
 }

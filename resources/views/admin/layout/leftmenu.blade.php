@@ -30,7 +30,7 @@
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">User & Department:</h6>
                  <a class="collapse-item" href="{{ url('User') }}">User</a>
-                 <a class="collapse-item" href="{{ url('UserControl') }}">User Control</a>
+                 {{-- <a class="collapse-item" href="{{ url('UserControl') }}">User Control</a> --}}
                  <a class="collapse-item" href="{{ url('Department') }}">Department</a>
              </div>
          </div>
@@ -51,7 +51,6 @@
                  <a class="collapse-item" href="{{ url('Brand') }}">Brand</a>
                  <a class="collapse-item" href="{{ url('Product') }}">Products</a>
                  <a class="collapse-item" href="{{ url('Promotion') }}">Promotion</a>
-
              </div>
          </div>
      </li>
@@ -96,14 +95,13 @@
          </div>
      </li>
      <li class="nav-item my-5">
-         <!-- Authentication -->
          <form method="POST" action="{{ route('logout') }}">
             @csrf
             <x-jet-dropdown-link href="{{ route('logout') }}" style="color:white !important"
                      onclick="event.preventDefault();
                             this.closest('form').submit();">
                             <i class="fas fa-sign-out-alt"></i>
-                            <span class="ml-1">Log out</span>
+                            <span class="ml-1">logout</span>
             </x-jet-dropdown-link>
         </form>
      </li>

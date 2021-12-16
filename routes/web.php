@@ -19,20 +19,17 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-
-
-// Route::get('/products', function () {
-//     return view('admin.pages.products');
-// })->name('products');
-
 // Route::get(
 //     '/theme',
 //     function () {
 //         return view("admin.theme");
 //     }
 // );
+// Route::get('Category/destroy/{id}', [CategoryController::class, "destroy"]);
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
-Route::get('Category/destroy/{id}', [CategoryController::class, "destroy"]);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [HomeController::class, "index"])->name('home');
@@ -43,8 +40,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
 });
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
