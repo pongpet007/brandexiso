@@ -1,10 +1,13 @@
+ @php
+      $secment1 =  request()->segment(1);
+ @endphp
  <!-- Sidebar -->
  <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
      <!-- Sidebar - Brand -->
      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
          <div class="sidebar-brand-text mx-3">
-             <img src="{{asset("assets_admin/logo.svg")}}" width="200" alt="" class="img-fluid">
+             <img src="{{ asset('assets_admin/logo.svg') }}" width="200" alt="" class="img-fluid">
          </div>
      </a>
 
@@ -21,12 +24,12 @@
 
      <!-- Nav Item - Pages Collapse Menu -->
      <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+         <a class="nav-link {{ ($secment1=='User'|$secment1=='Department')?'':'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
              aria-controls="collapseTwo">
              <i class="fas fa-fw fa-cog"></i>
              <span>User & Department</span>
          </a>
-         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div id="collapseTwo" class="collapse  {{ ($secment1=='User'|$secment1=='Department')?'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">User & Department:</h6>
                  <a class="collapse-item" href="{{ url('User') }}">User</a>
@@ -96,14 +99,13 @@
      </li>
      <li class="nav-item my-5">
          <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <x-jet-dropdown-link href="{{ route('logout') }}" style="color:white !important"
-                     onclick="event.preventDefault();
+             @csrf
+             <x-jet-dropdown-link href="{{ route('logout') }}" style="color:white !important" onclick="event.preventDefault();
                             this.closest('form').submit();">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="ml-1">logout</span>
-            </x-jet-dropdown-link>
-        </form>
+                 <i class="fas fa-sign-out-alt"></i>
+                 <span class="ml-1">logout</span>
+             </x-jet-dropdown-link>
+         </form>
      </li>
 
 
