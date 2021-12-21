@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
+use App\Http\Controllers\DocumentGroupController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserControlController;
@@ -36,6 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('Department', DepartmentController::class);
     Route::resource('User', UserAdminController::class);
     Route::resource('UserControl', UserControlController::class);
+    Route::resource('DocumentGroup', DocumentGroupController::class);
 
     Route::get('dashboard', function () {
         return view('dashboard');
