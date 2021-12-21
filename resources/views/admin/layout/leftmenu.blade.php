@@ -24,12 +24,12 @@
 
      <!-- Nav Item - Pages Collapse Menu -->
      <li class="nav-item">
-         <a class="nav-link {{ ($secment1=='document')?'':'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+         <a class="nav-link {{ ($secment1=='user'||$secment1=='department'||$secment1=='documentgroup')?'':'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
              aria-controls="collapseOne">
              <i class="fas fa-fw fa-cog"></i>
              <span>User & Department</span>
          </a>
-         <div id="collapseOne" class="collapse  {{ ($secment1=='document')?'show':'' }}" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+         <div id="collapseOne" class="collapse  {{ ($secment1=='user'||$secment1=='department'||$secment1=='documentgroup')?'show':'' }}" aria-labelledby="headingOne" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">User & Department:</h6>
                  <a class="collapse-item" href="{{ url('User') }}">User</a>
@@ -41,15 +41,19 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link {{ ($secment1=='User'|$secment1=='Department')?'':'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+        <a class="nav-link {{ ($secment1=='document'||$secment1=='documentlist')?'':'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
             <span>ISO Document</span>
         </a>
-        <div id="collapseTwo" class="collapse  {{ ($secment1=='User'|$secment1=='Department')?'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse  {{ ($secment1=='document'||$secment1=='documentlist')?'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">ISO Document:</h6>
-                <a class="collapse-item" href="{{ url('User') }}">Document</a>
+                <a class="collapse-item" href="{{ url('documentlist/1') }}">1. QRM</a>
+                <a class="collapse-item" href="{{ url('documentlist/2') }}">2. SALE</a>
+                <a class="collapse-item" href="{{ url('documentlist/3') }}">3. PRODUCTION</a>
+                <a class="collapse-item" href="{{ url('documentlist/4') }}">4. PERSONAL</a>
+                <a class="collapse-item" href="{{ url('documentlist/5') }}">5. PURCHESE</a>
             </div>
         </div>
     </li>

@@ -18,18 +18,6 @@ class DocumentGroupController extends Controller
         $keyword = "";
         $description = "";
 
-        // $xx = DB::table('document_group')->where("parent_id", 0)->get();
-        // $documentgroups = array();
-        // foreach ($xx as $key => $value) {
-        //     $documentgroups[$key]["main"] = $value;
-        //     $sub1s =  DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
-        //     $documentgroups[$key]["sub"] = array($sub1s);
-
-        //     foreach ($sub1s as $key2 => $value2) {
-        //         $sub2s = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
-        //         $documentgroups[$key]["sub"][$key2]["sub2"] = array($sub2s);
-        //     }
-        // }
         $documentgroups = DB::table('document_group')->where("parent_id", 0)->get();
         foreach ($documentgroups as $value) {
             $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
