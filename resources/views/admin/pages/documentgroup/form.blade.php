@@ -54,6 +54,9 @@
                     <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                                 <h6>Error list :</h6>
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -86,11 +89,12 @@
                                 <select name="parent_id" id="parent_id" class="form-control">
                                     <option value="0">-- Main group --</option>
                                     @foreach ($maingroups as $key => $value)
-                                        <option value="{{ $key }}" {{ $key==$parent_id?'selected':''}}>
+                                        <option value="{{ $key }}" {{ $key == $parent_id ? 'selected' : '' }}>
                                             {{ $value[0] }}
                                         </option>
                                         @foreach ($value['sub'] as $key2 => $value2)
-                                            <option value="{{ $key2 }}"  {{ $key2==$parent_id?'selected':''}}>--- {{ $value2 }}</option>
+                                            <option value="{{ $key2 }}" {{ $key2 == $parent_id ? 'selected' : '' }}>
+                                                --- {{ $value2 }}</option>
                                         @endforeach
                                     @endforeach
 

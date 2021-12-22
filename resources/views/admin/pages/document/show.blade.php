@@ -12,7 +12,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"> Document in {{ $group->group_name }}</li>
+                    <li class="breadcrumb-item active" aria-current="page"> Document in <span style="color:red; font-weight: bolder;">{{ $group->group_name }}</span></li>
                 </ol>
             </nav>
         </div>
@@ -41,15 +41,16 @@
                 <table class="table table-bordered bg-white">
                     <tr>
                         <td colspan="5">
-                            <a href="{{ url("documentlist/create/$group_id") }}" class="btn btn-success">Create new document</a>
+                            <a href="{{ url("documentlist/create/$group_id") }}" class="btn btn-success">Create new
+                                document</a>
                         </td>
                     </tr>
                     <tr class="bg-info text-white">
                         <th>Code</th>
                         <th>Title</th>
                         <th>Date</th>
-                        <th>Attachment</th>
-                        <th>Action</th>
+                        <th width="400">Attachment List:</th>
+                        <th width="220">Action</th>
                     </tr>
                     @foreach ($documents as $document)
                         <tr>
@@ -57,10 +58,21 @@
                             <td>{{ $document->title }}</td>
                             <td>{{ $document->doc_date }}</td>
                             <td>
-                                File list:<br>
-
+                                @if (sizeof($document->attachments) > 0)
+                                    <table class="table table-striped">
+                                        @foreach ($document->attachments as $attachment)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ url("downloadfile/$attachment->filepath") }}">
+                                                        {{ $attachment->filename }}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                @endif
                             </td>
-                            <td width="220">
+                            <td >
                                 <a href="{{ url('Document') }}/{{ $document->doc_id }}/edit"
                                     class="btn btn-warning">Edit</a>
                                 <form action="{{ url('Document') }}/{{ $document->doc_id }}"

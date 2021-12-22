@@ -55,14 +55,14 @@
                                 {{ $documentgroup->group_name }}
                                 @if (sizeof($documentgroup->sub) > 0)
                                     <a class="btn btn-warning btn-sm" href="#" data-toggle="collapse"
-                                        data-target="#collapse{{ $documentgroup->group_name }}" aria-expanded="true"
-                                        aria-controls="collapse{{ $documentgroup->group_name }}">
+                                        data-target="#collapse{{ $documentgroup->doc_group_id }}" aria-expanded="true"
+                                        aria-controls="collapse{{ $documentgroup->doc_group_id }}">
                                         <span>>></span>
                                     </a>
                                 @endif
 
-                                <div id="collapse{{ $documentgroup->group_name }}" class="collapse "
-                                    aria-labelledby="heading{{ $documentgroup->group_name }}"
+                                <div id="collapse{{ $documentgroup->doc_group_id }}" class="collapse "
+                                    aria-labelledby="heading{{ $documentgroup->doc_group_id }}"
                                     data-parent="#accordionSidebar">
                                     <div class="bg-white py-2 collapse-inner rounded">
                                         <table class="table table-bordered">

@@ -37,7 +37,8 @@
     <!-- Content Row -->
     <div class="row">
         <div class="col-lg-12">
-            <form action="{{ strtolower($method)=='add'?url('Department'):url("Department/$department->dep_id") }}" method="POST">
+            <form action="{{ strtolower($method) == 'add' ? url('Department') : url("Department/$department->dep_id") }}"
+                method="POST">
                 @csrf
                 @if (strtolower($method) == 'add')
                     @method("POST")
@@ -52,6 +53,9 @@
                     <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                                 <h6>Error list :</h6>
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -65,7 +69,8 @@
                                 Name
                             </div>
                             <div class="col-xl-4">
-                                <input type="text" class="form-control" name="dep_name" value="{{  isset($department)?$department->dep_name:'' }}" />
+                                <input type="text" class="form-control" name="dep_name"
+                                    value="{{ isset($department) ? $department->dep_name : '' }}" />
                             </div>
                         </div>
                         <div class="row">

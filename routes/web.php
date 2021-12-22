@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 
+use App\Http\Controllers\DocumentAttachmentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentGroupController;
 use App\Http\Controllers\DepartmentController;
@@ -58,6 +59,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         );
         return redirect("/Document/$doc_id/edit");
     });
+
+    Route::post('Attachment/upload', [DocumentAttachmentController::class,"upload"])->name('upload');
+    Route::get('downloadfile/{filename}', [DocumentAttachmentController::class,"download"])->name('download');
 
     Route::get('dashboard', function () {
         return view('dashboard');

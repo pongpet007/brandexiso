@@ -21,6 +21,9 @@ class DocumentController extends Controller
         $group = DB::table('document_group')->where('doc_group_id', $group_id)->get()->first();
 
         $documents = DB::table('document')->where('doc_group_id', $group_id)->get();
+        foreach ($documents as $document) {
+            $document->attachments = DB::table('document_attachment')->where('doc_id', $document->doc_id)->get();
+        }
 
         return view("admin.pages.document.show", compact('title', 'keyword', 'description', 'group', 'group_id', 'documents'));
     }
@@ -84,10 +87,10 @@ class DocumentController extends Controller
         //
         $document =  DB::table('document')->where('doc_id', $id)->get()->first();
         $group = DB::table('document_group')->where('doc_group_id', $document->doc_id)->get()->first();
-
+        $attachments = DB::table('document_attachment')->where('doc_id', $id)->get();
         $method = "Edit";
 
-        return view('admin.pages.document.form', compact('method', 'document', 'group'));
+        return view('admin.pages.document.form', compact('method', 'document', 'group','attachments'));
     }
 
     /**
@@ -135,11 +138,10 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
+        $document = DB::table("document")->where('doc_id', $id)->get()->first();
         DB::table("document")
             ->where('doc_id', $id)
             ->delete();
-
-        $document = DB::table("document")->where('doc_id', $id)->get()->first();
         return redirect("documentlist/$document->doc_group_id");
     }
 }

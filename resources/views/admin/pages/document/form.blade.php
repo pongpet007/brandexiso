@@ -31,21 +31,35 @@
     {{-- =========================================================================================================== --}}
     {{-- Script Other --}}
     @push('scriptother')
-    <script type="text/javascript">
-        if($('.datepicker').length>0){
-            $('.datepicker').datepicker({
-                'format':'yyyy-mm-dd'
-            });
-        }
-    </script>
+        <script type="text/javascript">
+            if ($('.datepicker').length > 0) {
+                $('.datepicker').datepicker({
+                    'format': 'yyyy-mm-dd'
+                });
+            }
+        </script>
     @endpush
     {{-- =========================================================================================================== --}}
 
     <!-- Content Row -->
     <div class="row">
+        <div class="col-lg-12">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h6>Error list :</h6>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
         <div class="col-lg-6">
-            <form
-                action="{{ strtolower($method) == 'add' ? url('Document') : url("Document/$document->doc_id") }}"
+            <form action="{{ strtolower($method) == 'add' ? url('Document') : url("Document/$document->doc_id") }}"
                 method="POST">
                 @csrf
                 @if (strtolower($method) == 'add')
@@ -59,16 +73,6 @@
                         Edit : {{ isset($document) ? $document->title : '' }}
                     </div>
                     <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <h6>Error list :</h6>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <div class="row mb-3">
                             <div class="col-xl-2 text-right pt-2">
                                 Code
@@ -85,10 +89,11 @@
                                 Date
                             </div>
                             @php
-                                $doc_date = strlen(old('doc_date')) > 0 ? old('doc_date') : (strlen($document->doc_date)>0 ? $document->doc_date : date('Y-m-d'));
+                                $doc_date = strlen(old('doc_date')) > 0 ? old('doc_date') : (strlen($document->doc_date) > 0 ? $document->doc_date : date('Y-m-d'));
                             @endphp
                             <div class="col-xl-10">
-                                <input type="text" class="form-control datepicker" name="doc_date" value="{{ $doc_date }}" />
+                                <input type="text" class="form-control datepicker" name="doc_date"
+                                    value="{{ $doc_date }}" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -146,7 +151,9 @@
                     File Attachment
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method("post")
                         <div class="row">
                             <div class="col-xl-2 text-right pt-2">
                                 File:
@@ -155,6 +162,7 @@
                                 <input type="file" name="attachment">
                             </div>
                             <div class="col-xl-4">
+                                <input type="hidden" name="doc_id" value="{{ $document->doc_id }}">
                                 <input type="submit" class="btn btn-info" name="btn-save" value="Save" />
                             </div>
                         </div>
@@ -168,11 +176,15 @@
                                         File List:
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td>xx</td>
-                                </tr>
-
+                                @foreach ($attachments as $attachment)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ url("downloadfile/$attachment->filepath") }}" >
+                                            {{ $attachment->filename }}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </table>
                         </div>
                     </div>

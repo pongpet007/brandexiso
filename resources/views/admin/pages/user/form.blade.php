@@ -57,6 +57,10 @@
                                 <div class="col-xl-2 text-right pt-2"></div>
                                 <div class="col-xl-4">
                                     <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                         <h6>Error list :</h6>
                                         <ul>
                                             @foreach ($errors->all() as $error)
@@ -139,7 +143,8 @@
                                 @endphp
                                 <select name="level" id="level" class="form-control">
                                     @foreach ($levels as $item)
-                                        <option value="{{ $item }}" {{ $level == $item ? 'selected' : '' }}>Level
+                                        <option value="{{ $item }}" {{ $level == $item ? 'selected' : '' }}>
+                                            Level
                                             {{ $item }}</option>
                                     @endforeach
                                 </select>

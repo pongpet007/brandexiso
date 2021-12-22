@@ -17,7 +17,6 @@ class DepartmentController extends Controller
         $title = "Brandex ISO";
         $keyword = "";
         $description = "";
-
         $departments = DB::table('department')->get();
 
         return view("admin.pages.department.show", compact('title', 'keyword', 'description', 'departments'));

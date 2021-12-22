@@ -3,6 +3,7 @@
 namespace App\View\Components\Admin;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\DB;
 
 class Layout extends Component
 {
@@ -13,7 +14,19 @@ class Layout extends Component
      */
     public function __construct()
     {
-        //
+
+    }
+
+    public function getGroup()
+    {
+        $documentgroups = DB::table('document_group')->where("parent_id", 0)->get();
+        foreach ($documentgroups as $value) {
+            $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
+            foreach ($value->sub as $value2) {
+                $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
+            }
+        }
+        return $documentgroups;
     }
 
     /**
@@ -23,6 +36,7 @@ class Layout extends Component
      */
     public function render()
     {
-        return view('admin.layout.major');
+        $menugroups = $this->getGroup();
+        return view('admin.layout.major', compact('menugroups'));
     }
 }
