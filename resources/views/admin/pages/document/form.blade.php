@@ -182,6 +182,7 @@
                                             <a href="{{ url("downloadfile/$attachment->filepath") }}" >
                                             {{ $attachment->filename }}
                                             </a>
+                                            <a href="{{ url("deleteFile/$attachment->attachment_id")}}" onclick="return confirm('Delete {{ $attachment->filename }}');" class="btn btn-sm btn-danger" >del</a>
                                         </td>
                                     </tr>
                                 @endforeach

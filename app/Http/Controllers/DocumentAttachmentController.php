@@ -8,10 +8,20 @@ use Illuminate\Support\Facades\Storage;
 
 class DocumentAttachmentController extends Controller
 {
+    public function deleteFile($attachment_id)
+    {
+        $attachment = DB::table("document_attachment")->where('attachment_id',$attachment_id)->get()->first();
+        DB::table("document_attachment")
+        ->where('attachment_id',$attachment_id)
+        ->delete();
+        Storage::delete($attachment->filepath);
+        return redirect("Document/$attachment->doc_id/edit");
+    }
+
     public function download($filename)
     {
         // echo $filename;
-        return response()->download(storage_path('app/attachment/'.$filename));
+        return response()->download(storage_path('app/attachment/' . $filename));
     }
 
     public function upload(Request $request)
@@ -25,38 +35,34 @@ class DocumentAttachmentController extends Controller
         // $filename = date("YFd_his_").rand(1,5000);
         try {
             if ($request->file('attachment')->isValid()) {
-              $path = $request->attachment->path();
-              $extension = $request->attachment->extension();
-              $clientOriginalName = $request->attachment->getClientOriginalName();
-              $newFileName = time() . $clientOriginalName;
-              $uploadedFile = $request->file('attachment');
+                $path = $request->attachment->path();
+                $extension = $request->attachment->extension();
+                $clientOriginalName = $request->attachment->getClientOriginalName();
+                $newFileName = time() . $clientOriginalName;
+                $uploadedFile = $request->file('attachment');
 
-              // Save File to local drive
-              Storage::putFileAs('attachment', $uploadedFile, $newFileName);
+                // Save File to local drive
+                Storage::putFileAs('attachment', $uploadedFile, $newFileName);
 
-              $doc_id = $request->input("doc_id");
+                $doc_id = $request->input("doc_id");
 
-              DB::table("document_attachment")->insert([
-                    'doc_id'=>$doc_id,
-                    'filename'=>$clientOriginalName,
-                    'filepath'=>$newFileName
-              ]) ;
+                DB::table("document_attachment")->insert([
+                    'doc_id' => $doc_id,
+                    'filename' => $clientOriginalName,
+                    'filepath' => $newFileName
+                ]);
 
-              $return =  [
-                'path' => $path,
-                'extension' => $extension,
-                'clientOriginalName' => $clientOriginalName,
-                'newFileName' => $newFileName
-              ];
+                $return =  [
+                    'path' => $path,
+                    'extension' => $extension,
+                    'clientOriginalName' => $clientOriginalName,
+                    'newFileName' => $newFileName
+                ];
 
-              return redirect("Document/$doc_id/edit");
-
+                return redirect("Document/$doc_id/edit");
             }
-          } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             return $th->getMessage();
-          }
-
-
+        }
     }
-
 }
