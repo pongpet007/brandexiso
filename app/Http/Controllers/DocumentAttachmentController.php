@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DocumentAttachmentController extends Controller
 {
+
     public function deleteFile($attachment_id)
     {
         $attachment = DB::table("document_attachment")->where('attachment_id',$attachment_id)->get()->first();
@@ -21,10 +22,10 @@ class DocumentAttachmentController extends Controller
         return redirect("Document/$attachment->doc_id/edit");
     }
 
-    public function download($filename)
+    public function download($filepath,$filename)
     {
         // echo $filename;
-        return response()->download(storage_path('app/attachment/' . $filename));
+        return response()->download(storage_path('app/attachment/' . $filepath),$filename);
     }
 
     public function upload(Request $request)
