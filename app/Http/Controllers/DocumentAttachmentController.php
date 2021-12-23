@@ -11,10 +11,13 @@ class DocumentAttachmentController extends Controller
     public function deleteFile($attachment_id)
     {
         $attachment = DB::table("document_attachment")->where('attachment_id',$attachment_id)->get()->first();
+
         DB::table("document_attachment")
         ->where('attachment_id',$attachment_id)
         ->delete();
+
         Storage::delete($attachment->filepath);
+
         return redirect("Document/$attachment->doc_id/edit");
     }
 
@@ -29,10 +32,7 @@ class DocumentAttachmentController extends Controller
         $request->validate([
             'attachment' => 'required'
         ]);
-        // print_r($_FILES);
-        // $part = pathinfo($_FILES['attachment']['name']);
-        // $ext = $part['extension'];
-        // $filename = date("YFd_his_").rand(1,5000);
+
         try {
             if ($request->file('attachment')->isValid()) {
                 $path = $request->attachment->path();

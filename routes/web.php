@@ -63,6 +63,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('Attachment/upload', [DocumentAttachmentController::class,"upload"])->name('upload');
     Route::get('downloadfile/{filename}', [DocumentAttachmentController::class,"download"])->name('download');
     Route::get('deleteFile/{attachment_id}',[DocumentAttachmentController::class,"deleteFile"])->name('deleteFile');
+
+
     Route::get('dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
