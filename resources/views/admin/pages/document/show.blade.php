@@ -63,7 +63,7 @@
                                         @foreach ($document->attachments as $attachment)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ url("downloadfile/$attachment->filepath") }}">
+                                                    <a href="{{ url("downloadfile/$attachment->filepath/$attachment->filename") }}" >
                                                         {{ $attachment->filename }}
                                                     </a>
                                                 </td>
