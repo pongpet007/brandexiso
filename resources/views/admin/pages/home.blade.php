@@ -44,27 +44,27 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="success" title="All Department" amount="500"></x-card-border-left>
+            <x-card-border-left type="success" title="All Department" amount="{{ $count_department }}"></x-card-border-left>
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="info" title="All User" amount="30"
+            <x-card-border-left type="info" title="All User" amount="{{ $count_user }}"
                 icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="danger" title="All Category" amount="30"
+            <x-card-border-left type="danger" title="All Document Group" amount="{{ $count_group }}"
                 icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
         </div>
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <x-card-border-left type="warning" title="All Category" amount="30"
+            <x-card-border-left type="warning" title="All Document" amount="{{ $count_document }}"
                 icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
         </div>
-        <!-- Pending Requests Card Example -->
+  {{--      <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <x-card-border-left type="primary" title="All Category" amount="30"
                 icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
@@ -80,7 +80,7 @@
         <div class="col-xl-3 col-md-6 mb-4">
             <x-card-border-left type="dark" title="All Category" amount="30"
                 icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
-        </div>
+        </div> --}}
 
     </div>
 
