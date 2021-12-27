@@ -50,21 +50,22 @@
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <x-card-border-left type="info" title="All User" amount="{{ $count_user }}"
-                icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
+                icon="fas fa-user-tie fa-2x text-gray-300"></x-card-border-left>
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <x-card-border-left type="danger" title="All Document Group" amount="{{ $count_group }}"
-                icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
+                icon="fas fa-book fa-2x text-gray-300"></x-card-border-left>
         </div>
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <x-card-border-left type="warning" title="All Document" amount="{{ $count_document }}"
-                icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
+                icon="far fa-file-alt fa-2x text-gray-300"></x-card-border-left>
         </div>
-  {{--      <!-- Pending Requests Card Example -->
+  {{--
+        <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <x-card-border-left type="primary" title="All Category" amount="30"
                 icon="fas fa-dollar-sign fa-2x text-gray-300"></x-card-border-left>
