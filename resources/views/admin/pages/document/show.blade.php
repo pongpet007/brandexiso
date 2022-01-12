@@ -46,19 +46,21 @@
                                 @csrf
                                 @method('POST')
                                 <div class="row">
-                                    <div class="col-md-2">
-                                        @if (Auth::user()->level == 5)
+                                    @if (Auth::user()->level == 5)
+                                        <div class="col-md-2">
                                             <a href="{{ url("documentlist/create/$group_id") }}"
                                                 class="btn btn-success">Create
                                                 new
                                                 document</a>
-                                        @endif
-                                    </div>
+                                        </div>
+                                    @endif
                                     <div class="col-md-3">
-                                        <input type="text" name="keyword" id="keyword" class="form-control" placeholder="keyword" value="{{$keyword}}"/>
+                                        <input type="text" name="keyword" id="keyword" class="form-control"
+                                            placeholder="keyword" value="{{ $keyword }}" />
                                     </div>
                                     <div class="col-md-1">
-                                        <input type="submit" class="btn btn-success" name="btn-search" id="btn-search" value="ค้นหา" />
+                                        <input type="submit" class="btn btn-success" name="btn-search" id="btn-search"
+                                            value="ค้นหา" />
                                     </div>
 
                                 </div>
