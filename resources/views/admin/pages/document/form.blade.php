@@ -197,7 +197,7 @@
                                 </tr>
                                 @foreach ($attachments as $attachment)
                                     <tr>
-                                        <td>
+                                        <td nowrap>
                                             <a href="{{ url("changeStatus/$attachment->attachment_id")}}" class="btn btn-info">change</a>
                                             {{ $attachment->filestatus==1?'ทุก level':'เฉพาะ level 5' }}
                                         </td>
