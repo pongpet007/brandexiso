@@ -12,20 +12,25 @@ class DocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($group_id)
+    public function index(Request $request, $group_id)
     {
         $title = "Brandex ISO";
         $keyword = "";
         $description = "";
 
+        $keyword = $request->input('keyword');
+
         $group = DB::table('document_group')->where('doc_group_id', $group_id)->get()->first();
 
-        $documents = DB::table('document')->where('doc_group_id', $group_id)->get();
+        $documents = DB::table('document')
+                        ->where('doc_group_id', $group_id)
+                        ->whereRaw("( doc_date like '%$keyword%' or doc_code like '%$keyword%' or  rev like '%$keyword%' or  title like '%$keyword%') ")
+                        ->get();
         foreach ($documents as $document) {
             $document->attachments = DB::table('document_attachment')->where('doc_id', $document->doc_id)->get();
         }
 
-        return view("admin.pages.document.show", compact('title', 'keyword', 'description', 'group', 'group_id', 'documents'));
+        return view("admin.pages.document.show", compact('title', 'keyword', 'description', 'group', 'group_id', 'documents','keyword'));
     }
 
     /**
