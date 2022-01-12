@@ -86,6 +86,17 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-xl-2 text-right pt-2">
+                                REV
+                            </div>
+                            @php
+                                $rev = strlen(old('rev')) > 0 ? old('rev') : (isset($document) ? $document->rev : '');
+                            @endphp
+                            <div class="col-xl-10">
+                                <input type="text" class="form-control" name="rev" value="{{ $rev }}" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-xl-2 text-right pt-2">
                                 Date
                             </div>
                             @php
@@ -155,13 +166,19 @@
                         @csrf
                         @method("post")
                         <div class="row">
+                            <div class="col-xl-3">
+                                <select name="filestatus" id="filestatus" class="form-control" >
+                                    <option value="2">เฉพาะ level 5</option>
+                                    <option value="1">ทุก level</option>
+                                </select>
+                            </div>
                             <div class="col-xl-2 text-right pt-2">
-                                File:
+                                Attach:
                             </div>
                             <div class="col-xl-5">
                                 <input type="file" name="attachment">
                             </div>
-                            <div class="col-xl-4">
+                            <div class="col-xl-2">
                                 <input type="hidden" name="doc_id" value="{{ $document->doc_id }}">
                                 <input type="submit" class="btn btn-info" name="btn-save" value="Save" />
                             </div>
@@ -172,17 +189,25 @@
                         <div class="col-xl-12">
                             <table class="table table-bordered">
                                 <tr class="bg-warning text-white">
+                                    <td>Status</td>
                                     <td>
-                                        File List:
+                                        File name:
                                     </td>
+                                    <td>del</td>
                                 </tr>
                                 @foreach ($attachments as $attachment)
                                     <tr>
                                         <td>
+                                            <a href="{{ url("changeStatus/$attachment->attachment_id")}}" class="btn btn-info">change</a>
+                                            {{ $attachment->filestatus==1?'ทุก level':'เฉพาะ level 5' }}
+                                        </td>
+                                        <td>
                                             <a href="{{ url("downloadfile/$attachment->filepath/$attachment->filename") }}" >
                                             {{ $attachment->filename }}
                                             </a>
-                                            <a href="{{ url("deleteFile/$attachment->attachment_id")}}" onclick="return confirm('Delete {{ $attachment->filename }}');" class="btn btn-sm btn-danger" >del</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ url("deleteFile/$attachment->attachment_id")}}" onclick="return confirm('Delete {{ $attachment->filename }}');" class="btn btn-danger" >del</a>
                                         </td>
                                     </tr>
                                 @endforeach

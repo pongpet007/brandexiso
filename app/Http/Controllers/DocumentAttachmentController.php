@@ -46,11 +46,13 @@ class DocumentAttachmentController extends Controller
                 Storage::putFileAs('attachment', $uploadedFile, $newFileName);
 
                 $doc_id = $request->input("doc_id");
+                $filestatus = $request->input("filestatus");
 
                 DB::table("document_attachment")->insert([
                     'doc_id' => $doc_id,
                     'filename' => $clientOriginalName,
-                    'filepath' => $newFileName
+                    'filepath' => $newFileName,
+                    'filestatus' => $filestatus
                 ]);
 
                 $return =  [
@@ -65,5 +67,17 @@ class DocumentAttachmentController extends Controller
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
+    }
+    public function changeStatus($attachment_id)
+    {
+        $attachment = DB::table("document_attachment")->where('attachment_id',$attachment_id)->get()->first();
+
+        DB::table("document_attachment")
+        ->where('attachment_id', $attachment_id)
+        ->update([
+            'filestatus' => $attachment->filestatus==1?2:1
+        ]);
+
+        return redirect("Document/$attachment->doc_id/edit");
     }
 }

@@ -105,11 +105,13 @@ class DocumentController extends Controller
         //
         $request->validate([
             'doc_code' => 'required',
+            'rev' => 'required',
             'doc_date' => 'required',
             'title' => 'required'
         ]);
 
         $doc_code = $request->input("doc_code");
+        $rev = $request->input("rev");
         $doc_date = $request->input("doc_date");
         $title = $request->input("title");
         $detail = $request->input("detail");
@@ -119,6 +121,7 @@ class DocumentController extends Controller
             ->where('doc_id', $id)
             ->update([
                 'doc_code' => $doc_code,
+                'rev' => $rev,
                 'doc_date' => $doc_date,
                 'title' => $title,
                 'detail' => $detail,
