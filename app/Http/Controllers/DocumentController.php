@@ -42,9 +42,16 @@ class DocumentController extends Controller
     {
 
         $method = "Add";
+        $documentgroups = DB::table('document_group')->where("parent_id", 0)->get();
+        foreach ($documentgroups as $value) {
+            $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
+            foreach ( $value->sub as $value2) {
+                $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
+            }
+        }
         $group = DB::table('document_group')->where('doc_group_id', $group_id)->get()->first();
 
-        return view('admin.pages.document.form', compact('method', 'group'));
+        return view('admin.pages.document.form', compact('method', 'group','documentgroups'));
     }
 
     /**
@@ -89,13 +96,20 @@ class DocumentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $documentgroups = DB::table('document_group')->where("parent_id", 0)->get();
+        foreach ($documentgroups as $value) {
+            $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
+            foreach ( $value->sub as $value2) {
+                $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
+            }
+        }
+
         $document =  DB::table('document')->where('doc_id', $id)->get()->first();
         $group = DB::table('document_group')->where('doc_group_id', $document->doc_id)->get()->first();
         $attachments = DB::table('document_attachment')->where('doc_id', $id)->get();
         $method = "Edit";
 
-        return view('admin.pages.document.form', compact('method', 'document', 'group','attachments'));
+        return view('admin.pages.document.form', compact('method', 'document', 'group','attachments','documentgroups'));
     }
 
     /**
@@ -115,6 +129,7 @@ class DocumentController extends Controller
             'title' => 'required'
         ]);
 
+        $doc_group_id = $request->input("doc_group_id");
         $doc_code = $request->input("doc_code");
         $rev = $request->input("rev");
         $doc_date = $request->input("doc_date");
@@ -125,6 +140,7 @@ class DocumentController extends Controller
         DB::table("document")
             ->where('doc_id', $id)
             ->update([
+                'doc_group_id' => $doc_group_id,
                 'doc_code' => $doc_code,
                 'rev' => $rev,
                 'doc_date' => $doc_date,

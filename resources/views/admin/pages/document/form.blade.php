@@ -75,13 +75,39 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-xl-2 text-right pt-2">
+                                Document Group
+                            </div>
+                            @php
+                                $doc_group_id = strlen(old('doc_group_id')) > 0 ? old('doc_group_id') : (isset($document) ? $document->doc_group_id : '');
+                            @endphp
+                            <div class="col-xl-10">
+                                <select name="doc_group_id" id="doc_group_id" class="form-control">
+                                    @foreach ($documentgroups as $documentgroup)
+                                        <option value="{{ $documentgroup->doc_group_id }}" {{$doc_group_id==$documentgroup->doc_group_id?' selected ':''}} >
+                                            {{ $documentgroup->group_name }}</option>
+                                        @foreach ($documentgroup->sub as $sub)
+                                            <option value="{{ $sub->doc_group_id }}"  {{$doc_group_id==$sub->doc_group_id?' selected ':''}}>-----{{ $sub->group_name }}
+                                            </option>
+                                            @foreach ($sub->sub2 as $sub2)
+                                                <option value="{{ $sub2->doc_group_id }}" {{$doc_group_id==$sub2->doc_group_id?' selected ':''}}>
+                                                    ----------{{ $sub2->group_name }}</option>
+                                            @endforeach
+                                        @endforeach
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-xl-2 text-right pt-2">
                                 Code
                             </div>
                             @php
                                 $doc_code = strlen(old('doc_code')) > 0 ? old('doc_code') : (isset($document) ? $document->doc_code : '');
                             @endphp
                             <div class="col-xl-10">
-                                <input type="text" class="form-control" name="doc_code" value="{{ $doc_code }}" />
+                                <input type="text" class="form-control" name="doc_code"
+                                    value="{{ $doc_code }}" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -167,7 +193,7 @@
                         @method("post")
                         <div class="row">
                             <div class="col-xl-3">
-                                <select name="filestatus" id="filestatus" class="form-control" >
+                                <select name="filestatus" id="filestatus" class="form-control">
                                     <option value="2">เฉพาะ level 5</option>
                                     <option value="1">ทุก level</option>
                                 </select>
@@ -198,16 +224,20 @@
                                 @foreach ($attachments as $attachment)
                                     <tr>
                                         <td nowrap>
-                                            <a href="{{ url("changeStatus/$attachment->attachment_id")}}" class="btn btn-info">change</a>
-                                            {{ $attachment->filestatus==1?'ทุก level':'เฉพาะ level 5' }}
+                                            <a href="{{ url("changeStatus/$attachment->attachment_id") }}"
+                                                class="btn btn-info">change</a>
+                                            {{ $attachment->filestatus == 1 ? 'ทุก level' : 'เฉพาะ level 5' }}
                                         </td>
                                         <td>
-                                            <a href="{{ url("downloadfile/$attachment->filepath/$attachment->filename") }}" >
-                                            {{ $attachment->filename }}
+                                            <a
+                                                href="{{ url("downloadfile/$attachment->filepath/$attachment->filename") }}">
+                                                {{ $attachment->filename }}
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{ url("deleteFile/$attachment->attachment_id")}}" onclick="return confirm('Delete {{ $attachment->filename }}');" class="btn btn-danger" >del</a>
+                                            <a href="{{ url("deleteFile/$attachment->attachment_id") }}"
+                                                onclick="return confirm('Delete {{ $attachment->filename }}');"
+                                                class="btn btn-danger">del</a>
                                         </td>
                                     </tr>
                                 @endforeach
