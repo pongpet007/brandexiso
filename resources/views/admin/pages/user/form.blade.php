@@ -115,7 +115,7 @@
                                     value="{{ old('password') }}" />
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-3 d-none">
                             <div class="col-xl-2 text-right pt-2">
                                 Department
                             </div>

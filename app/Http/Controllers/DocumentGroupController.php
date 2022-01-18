@@ -25,6 +25,8 @@ class DocumentGroupController extends Controller
                 $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
             }
         }
+
+
         return view("admin.pages.documentgroup.show", compact('title', 'keyword', 'description', 'documentgroups'));
     }
 

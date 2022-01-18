@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 
+use App\Http\Controllers\UserDocumentGroupController;
 use App\Http\Controllers\DocumentAttachmentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentGroupController;
@@ -45,6 +46,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('User', UserAdminController::class);
     Route::resource('UserControl', UserControlController::class);
     Route::resource('DocumentGroup', DocumentGroupController::class);
+    Route::resource('UserDocumentGroup', UserDocumentGroupController::class);
 
     Route::resource('Document', DocumentController::class);
     Route::get("/documentlist/{group_id}", [DocumentController::class, "index"]);

@@ -47,8 +47,8 @@
                     <tr class="bg-info text-white">
                         <th>Full name</th>
                         <th>Level</th>
-                        <th>Department</th>
                         <th>Username</th>
+                        <th>Position</th>
                         <th>Active</th>
                         <th>Action</th>
                     </tr>
@@ -59,8 +59,8 @@
                                 <b>{{ $user->position }}</b>
                             </td>
                             <td>Level {{ $user->level }}</td>
-                            <td>{{ $user->dep_name }}</td>
                             <td>{{ $user->username }}</td>
+                            <td>{{ $user->position }}</td>
                             <td>{{ $user->is_active==1?'Yes':'No' }}</td>
                             <td width="220">
                                 <a href="{{ url("User/$user->id/edit") }}"

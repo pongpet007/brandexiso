@@ -3,17 +3,14 @@
  @endphp
  <!-- Sidebar -->
  <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
-
      <!-- Sidebar - Brand -->
      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
          <div class="sidebar-brand-text mx-3">
              <img src="{{ asset('assets_admin/logo.svg') }}" width="200" alt="" class="img-fluid">
          </div>
      </a>
-
      <!-- Divider -->
      <hr class="sidebar-divider my-0">
-
      <!-- Nav Item - Dashboard -->
      <li class="nav-item active">
          <a class="nav-link" href="{{ route('home') }}">
@@ -24,20 +21,21 @@
      @if (Auth::user()->level == 5)
          <!-- Nav Item - Pages Collapse Menu -->
          <li class="nav-item">
-             <a class="nav-link {{ $secment1 == 'user' || $secment1 == 'department' || $secment1 == 'documentgroup' ? '' : 'collapsed' }}"
+             <a class="nav-link {{ $secment1 == 'user' || $secment1 == 'department' || $secment1 == 'documentgroup' || $secment1== 'userdocumentgroup' ? '' : 'collapsed' }}"
                  href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
                  aria-controls="collapseOne">
                  <i class="fas fa-fw fa-cog"></i>
-                 <span>User & Department</span>
+                 <span>Manage Access</span>
              </a>
              <div id="collapseOne"
-                 class="collapse  {{ $secment1 == 'user' || $secment1 == 'department' || $secment1 == 'documentgroup' ? 'show' : '' }}"
+                 class="collapse  {{ $secment1 == 'user' || $secment1 == 'department' || $secment1 == 'documentgroup'  || $secment1== 'userdocumentgroup'  ? 'show' : '' }}"
                  aria-labelledby="headingOne" data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">
-                     <h6 class="collapse-header">User & Department:</h6>
+                     <h6 class="collapse-header">Master record:</h6>
                      <a class="collapse-item" href="{{ url('User') }}">User </a>
-                     <a class="collapse-item" href="{{ url('Department') }}">Department</a>
+                     {{-- <a class="collapse-item" href="{{ url('Department') }}">Department</a> --}}
                      <a class="collapse-item" href="{{ url('DocumentGroup') }}">Document Group</a>
+                     <a class="collapse-item" href="{{ url('UserDocumentGroup') }}">User & Document Group</a>
                  </div>
              </div>
          </li>
