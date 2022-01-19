@@ -18,11 +18,11 @@ class DocumentGroupController extends Controller
         $keyword = "";
         $description = "";
 
-        $documentgroups = DB::table('document_group')->where("parent_id", 0)->get();
+        $documentgroups = DB::table('document_group')->where("parent_id", 0)->orderBy('group_name','asc')->get();
         foreach ($documentgroups as $value) {
-            $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
+            $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->orderBy('group_name','asc')->get();
             foreach ( $value->sub as $value2) {
-                $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
+                $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->orderBy('group_name','asc')->get();
             }
         }
 

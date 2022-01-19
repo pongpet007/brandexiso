@@ -66,7 +66,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('downloadfile/{filepath}/{filename}', [DocumentAttachmentController::class,"download"])->name('download');
     Route::get('deleteFile/{attachment_id}',[DocumentAttachmentController::class,"deleteFile"])->name('deleteFile');
     Route::get('changeStatus/{attachment_id}',[DocumentAttachmentController::class,"changeStatus"]);
-
+    Route::get('getpdf',[DocumentAttachmentController::class,"pdf"]);
 
     Route::get('dashboard', function () {
         return view('dashboard');

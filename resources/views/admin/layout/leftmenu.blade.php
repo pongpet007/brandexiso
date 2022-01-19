@@ -12,13 +12,13 @@
      <!-- Divider -->
      <hr class="sidebar-divider my-0">
      <!-- Nav Item - Dashboard -->
+     @if (Auth::user()->level == 5)
      <li class="nav-item active">
          <a class="nav-link" href="{{ route('home') }}">
              <i class="fas fa-fw fa-tachometer-alt"></i>
              <span>Dashboard</span></a>
      </li>
 
-     @if (Auth::user()->level == 5)
          <!-- Nav Item - Pages Collapse Menu -->
          <li class="nav-item">
              <a class="nav-link {{ $secment1 == 'user' || $secment1 == 'department' || $secment1 == 'documentgroup' || $secment1== 'userdocumentgroup' ? '' : 'collapsed' }}"
@@ -73,10 +73,10 @@
      </li>
 
 
-     <li class="nav-item my-5">
+     <li class="nav-item">
          <form method="POST" action="{{ route('logout') }}">
              @csrf
-             <x-jet-dropdown-link href="{{ route('logout') }}" style="color:white !important" onclick="event.preventDefault();
+             <x-jet-dropdown-link class="nav-link" href="{{ route('logout') }}" style="color:white !important" onclick="event.preventDefault();
                             this.closest('form').submit();">
                  <i class="fas fa-sign-out-alt"></i>
                  <span class="ml-1">logout</span>

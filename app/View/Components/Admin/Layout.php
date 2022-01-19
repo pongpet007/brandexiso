@@ -22,7 +22,9 @@ class Layout extends Component
         $documentgroups = DB::table('document_group')
             ->join('user_document_group', 'document_group.doc_group_id', '=', 'user_document_group.doc_group_id')
             ->where('user_document_group.user_id', Auth::user()->id)
-            ->where("parent_id", 0)->get();
+            ->where("parent_id", 0)
+            ->orderBy('group_name','asc')
+            ->get();
         foreach ($documentgroups as $value) {
             $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
             foreach ($value->sub as $value2) {

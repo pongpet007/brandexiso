@@ -91,7 +91,7 @@
                                                 <tr>
                                                     <td>
                                                         <a
-                                                            href="{{ url("downloadfile/$attachment->filepath/$attachment->filename") }}">
+                                                            href="{{ url("downloadfile/$attachment->filepath/$attachment->filename") }}" target="_blank">
                                                             {{ $attachment->filename }}
                                                         </a>
 
