@@ -46,8 +46,7 @@ class DocumentAttachmentController extends Controller
                 $pdf->getMpdf()->SetWatermarkText(Auth::user()->name);
                 $pdf->getMpdf()->showWatermarkText = true;
             }
-
-            return $pdf->getMpdf()->Output();
+            return $pdf->getMpdf()->Output($filename,'I');
         } else {
 
             return response()->download(storage_path('app/attachment/' . $filepath), $filename);
