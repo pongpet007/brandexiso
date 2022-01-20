@@ -54,10 +54,7 @@
                     </tr>
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->name }} ({{ $user->nickname }})
-                                <br>
-                                <b>{{ $user->position }}</b>
-                            </td>
+                            <td>{{ $user->name }} ({{ $user->nickname }}) </td>
                             <td>Level {{ $user->level }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->position }}</td>
