@@ -36,6 +36,13 @@ class DocumentAttachmentController extends Controller
 
         if (strtolower($parts['extension']) == 'pdf') {
             $pdf  = PDF::getPdf();
+            $pagecount  = $pdf->getMpdf()->SetSourceFile($filepath);
+            $tplId = $pdf->getMpdf()->ImportPage(1);
+            $size = $pdf->getMpdf()->getTemplateSize($tplId);
+
+            $pdf  = PDF::getPdf([
+                'format' => [$size['width'], $size['height']]
+            ]);
             $pdf->getMpdf()->SetTitle($filename);
             $pagecount  = $pdf->getMpdf()->SetSourceFile($filepath);
 
@@ -46,10 +53,10 @@ class DocumentAttachmentController extends Controller
                 $pdf->getMpdf()->SetWatermarkText(Auth::user()->name);
                 $pdf->getMpdf()->showWatermarkText = true;
             }
-            return $pdf->getMpdf()->Output($filename,'I');
-        } else {
+            return $pdf->getMpdf()->Output($filename, 'I');
 
-            return response()->download(storage_path('app/attachment/' . $filepath), $filename);
+        } else {
+            return response()->download($filepath, $filename);
         }
     }
 
