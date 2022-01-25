@@ -50,32 +50,37 @@ CREATE TABLE IF NOT EXISTS `document` (
   `cdate` date DEFAULT NULL,
   `udate` date DEFAULT NULL,
   PRIMARY KEY (`doc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
--- Dumping data for table admin_brandexiso.document: ~22 rows (approximately)
+-- Dumping data for table admin_brandexiso.document: ~26 rows (approximately)
 /*!40000 ALTER TABLE `document` DISABLE KEYS */;
 INSERT INTO `document` (`doc_id`, `doc_code`, `rev`, `doc_date`, `title`, `detail`, `remark`, `doc_group_id`, `cby`, `uby`, `cdate`, `udate`) VALUES
-	(6, 'QP-QMR-01', 'REV1', '2021-11-01', 'การประชุมทบทวนระบบคุณภาพโดยฝ่ายบริหาร', 'หมายเอกสารเอกสาร  :   QP-QMR-01\r\nแก้ไขครั้งที่                  :   01\r\nวันที่อนุมัติใช้              :  1-11-2021', NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-07', '2022-01-07'),
-	(7, 'QM-01', 'REV1', '2021-12-08', 'คู่มือคุณภาพ', NULL, NULL, 10, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(8, 'QP-QMR-02', 'REV1', '2021-11-01', 'การควบคุมโครงสร้างพื้นฐาน', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(9, 'QP-QMR-03', 'REV1', '2021-11-01', 'การควบคุมเอกสาร', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(10, 'QP-QMR-04', 'REV1', '2021-11-01', 'การปฏิบัติการแก้ไขและปฏิบัติการป้องกัน', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(11, 'QP-QMR-05', 'REV1', '2021-11-01', 'การควบคุมบันทึก', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(12, 'QP-QMR-06', 'REV1', '2021-11-01', 'การตรวจติดตามภายใน', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(13, 'QP-QMR-07', 'REV1', '2021-11-01', 'การสื่อสาร', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(14, 'QP-QMR-08', 'REV1', '2021-11-01', 'การดำเนินการเกี่ยวกับความเสี่ยงและโอกาส', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(15, 'QP-QMR-09', 'REV1', '2021-11-01', 'บริบทองค์กร, การตรวจวัดกระบวนการ, การวิเคราะห์ข้อมูล,  การปรับปรุงอย่างต่อเนื่อง', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(16, 'QP-PRO-01', NULL, '2021-12-08', 'การออกแบบ วางแผน Production และตรวจสอบคุณภาพงาน', NULL, NULL, 3, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(17, 'QP-PRO-02', NULL, '2021-11-01', 'การควบคุมผลิตภัณฑ์ที่ไม่เป็นไปตามข้อกำหนด', NULL, NULL, 3, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(6, 'QP-QMR-01', '00', '2021-11-01', 'การประชุมทบทวนระบบคุณภาพโดยฝ่ายบริหาร', 'หมายเอกสารเอกสาร  :   QP-QMR-01\r\nแก้ไขครั้งที่                  :   00\r\nวันที่อนุมัติใช้              :  1-11-2021', NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-07', '2022-01-07'),
+	(7, 'QM-01', '01', '2021-12-08', 'คู่มือคุณภาพ', NULL, NULL, 10, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(8, 'QP-QMR-02', '00', '2021-11-01', 'การควบคุมโครงสร้างพื้นฐาน', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(9, 'QP-QMR-03', '00', '2021-11-01', 'การควบคุมเอกสาร', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(10, 'QP-QMR-04', '00', '2021-11-01', 'การปฏิบัติการแก้ไขและปฏิบัติการป้องกัน', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(11, 'QP-QMR-05', '00', '2021-11-01', 'การควบคุมบันทึก', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(12, 'QP-QMR-06', '00', '2021-11-01', 'การตรวจติดตามภายใน', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(13, 'QP-QMR-07', '00', '2021-11-01', 'การสื่อสาร', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(14, 'QP-QMR-08', '00', '2021-11-01', 'การดำเนินการเกี่ยวกับความเสี่ยงและโอกาส', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(15, 'QP-QMR-09', '00', '2021-11-01', 'บริบทองค์กร, การตรวจวัดกระบวนการ, การวิเคราะห์ข้อมูล,  การปรับปรุงอย่างต่อเนื่อง', NULL, NULL, 11, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(16, 'QP-PRO-01', '01', '2021-12-08', 'การออกแบบ วางแผน Production และตรวจสอบคุณภาพงาน', NULL, NULL, 8, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(17, 'QP-PRO-02', '00', '2021-11-01', 'การควบคุมผลิตภัณฑ์ที่ไม่เป็นไปตามข้อกำหนด', NULL, NULL, 8, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
 	(18, 'QP-STO-01', NULL, '2021-11-01', 'การรับ-จัดเก็บ-จ่าย-ดูแลรักษา-เคลื่อนย้ายวัสดุอุปกรณ์สินค้าสำเร็จรูป', NULL, NULL, 9, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
 	(19, 'QP-PER-01', NULL, '2021-11-01', 'การสรรหาและคัดเลือกบุคลากร', NULL, NULL, 4, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
 	(20, 'QP-PER-02', NULL, '2021-11-01', 'การฝึกอบรม', NULL, NULL, 4, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(25, 'QP-SAL-01', NULL, '2021-12-08', 'การทบทวนและรับคำสั่งซื้อ', NULL, NULL, 2, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(26, 'QP-SAL-02', NULL, '2021-11-01', 'การรับข้อร้องเรียนลูกค้าและการติดต่อสื่อสารกับลูกค้า', NULL, NULL, 2, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(27, 'QP-SAL-03', NULL, '2021-11-01', 'การหาความคาดหวังและจัดระบบความพึงพอใจลูกค้า', NULL, NULL, 2, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(28, 'QP-SAL-04', NULL, '2021-11-01', 'การควบคุมทรัพย์สินลูกค้า', NULL, NULL, 2, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(25, 'QP-SAL-01', '01', '2021-12-08', 'การทบทวนและรับคำสั่งซื้อ', NULL, NULL, 13, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(26, 'QP-SAL-02', '00', '2021-11-01', 'การรับข้อร้องเรียนลูกค้าและการติดต่อสื่อสารกับลูกค้า', NULL, NULL, 13, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(27, 'QP-SAL-03', '00', '2021-11-01', 'การหาความคาดหวังและจัดระบบความพึงพอใจลูกค้า', NULL, NULL, 13, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(28, 'QP-SAL-04', '00', '2021-11-01', 'การควบคุมทรัพย์สินลูกค้า', NULL, NULL, 13, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
 	(29, 'QP-PUR-01', NULL, '2021-11-01', 'การคัดเลือก / ประเมิน Supplier', NULL, NULL, 5, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
-	(30, 'QP-PUR-02', NULL, '2021-12-01', 'การจัดซื้อ', NULL, NULL, 5, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11');
+	(30, 'QP-PUR-02', NULL, '2021-12-01', 'การจัดซื้อ', NULL, NULL, 5, 'ชลธิสา สามาน', NULL, '2022-01-11', '2022-01-11'),
+	(32, 'FM-SAL-02-01', '00', '2021-11-01', 'บันทึกข้อร้องเรียนลูกค้า', NULL, NULL, 16, 'ชลธิสา สมาน', NULL, '2022-01-21', '2022-01-21'),
+	(33, 'FM-QMR-01/01', '00', '2021-11-01', 'ใบแจ้งวาระการประชุม การทบทวนฝ่ายบริหารระบบคุณภาพ', NULL, NULL, 18, 'ชลธิสา สมาน', NULL, '2022-01-25', '2022-01-25'),
+	(34, 'FM-QMR-01/02', '00', '2022-01-25', 'รายงานการประชุม ทบทวน ฝ่ายบริหาร', NULL, NULL, 18, 'ชลธิสา สมาน', NULL, '2022-01-25', '2022-01-25'),
+	(35, 'FM-QMR-02/01', '00', '2021-11-01', 'Checklist โครงสร้างพื้นฐาน', NULL, NULL, 20, 'ชลธิสา สมาน', NULL, '2022-01-25', '2022-01-25'),
+	(36, 'FM-QMR-03/01', '00', '2021-11-01', 'ใบร้องขอดำเนินการเรื่องเอกสาร', NULL, NULL, 21, 'ชลธิสา สมาน', NULL, '2022-01-25', '2022-01-25');
 /*!40000 ALTER TABLE `document` ENABLE KEYS */;
 
 -- Dumping structure for table admin_brandexiso.document_attachment
@@ -87,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `document_attachment` (
   `filepath` varchar(255) DEFAULT NULL,
   `filestatus` int(11) DEFAULT NULL,
   PRIMARY KEY (`attachment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
--- Dumping data for table admin_brandexiso.document_attachment: ~21 rows (approximately)
+-- Dumping data for table admin_brandexiso.document_attachment: ~37 rows (approximately)
 /*!40000 ALTER TABLE `document_attachment` DISABLE KEYS */;
 INSERT INTO `document_attachment` (`attachment_id`, `doc_id`, `filename`, `filepath`, `filestatus`) VALUES
 	(4, 6, 'BD QMR-01 การประชุมทบทวนระบบคุณภาพโดยฝ่ายบริหาร update Sep 29, 2021.docx', '1641864508BD QMR-01 การประชุมทบทวนระบบคุณภาพโดยฝ่ายบริหาร update Sep 29, 2021.docx', 2),
@@ -112,7 +117,23 @@ INSERT INTO `document_attachment` (`attachment_id`, `doc_id`, `filename`, `filep
 	(21, 19, 'BD PER-02 การฝึกอบรม Sep 29, 2021.docx', '1641896899BD PER-02 การฝึกอบรม Sep 29, 2021.docx', NULL),
 	(22, 29, 'BD PUR-01 การคัดเลือกประเมินSupplier Oct 1, 2021.docx', '1641896931BD PUR-01 การคัดเลือกประเมินSupplier Oct 1, 2021.docx', NULL),
 	(23, 30, 'BD PUR-02 การจัดซื้อ Oct 1, 2021.docx', '1641896946BD PUR-02 การจัดซื้อ Oct 1, 2021.docx', NULL),
-	(24, 18, 'BD STO-01 การรับ จัดเก็บ จ่าย ดูแลรักษา เคลื่อนย้ายวัสดุอุปกรณ์ สินค้า Oct 7, 2021.docx', '1641897011BD STO-01 การรับ จัดเก็บ จ่าย ดูแลรักษา เคลื่อนย้ายวัสดุอุปกรณ์ สินค้า Oct 7, 2021.docx', NULL);
+	(24, 18, 'BD STO-01 การรับ จัดเก็บ จ่าย ดูแลรักษา เคลื่อนย้ายวัสดุอุปกรณ์ สินค้า Oct 7, 2021.docx', '1641897011BD STO-01 การรับ จัดเก็บ จ่าย ดูแลรักษา เคลื่อนย้ายวัสดุอุปกรณ์ สินค้า Oct 7, 2021.docx', NULL),
+	(31, 32, 'SAL-02-01 บันทึกข้อร้องเรียนลูกค้า Oct 1, 2021.pdf', '1642737038SAL-02-01 บันทึกข้อร้องเรียนลูกค้า Oct 1, 2021.pdf', 2),
+	(32, 32, 'SAL-02-01 บันทึกข้อร้องเรียนลูกค้า Oct 1, 2021.xlsx', '1642737153SAL-02-01 บันทึกข้อร้องเรียนลูกค้า Oct 1, 2021.xlsx', 2),
+	(33, 7, 'QM-01.pdf', '1642989269QM-01.pdf', 2),
+	(34, 6, 'QP-QMR-01.pdf', '1642990662QP-QMR-01.pdf', 2),
+	(35, 9, 'QP-QMR-03.pdf', '1642990712QP-QMR-03.pdf', 2),
+	(36, 10, 'QP-QMR-04.pdf', '1642990730QP-QMR-04.pdf', 2),
+	(37, 12, 'QP-QMR-06.pdf', '1642990749QP-QMR-06.pdf', 2),
+	(38, 13, 'QP-QMR-07.pdf', '1642990773QP-QMR-07.pdf', 2),
+	(39, 14, 'QP-QMR-08.pdf', '1642990791QP-QMR-08.pdf', 2),
+	(40, 15, 'QP-QMR-09.pdf', '1642990919QP-QMR-09.pdf', 2),
+	(42, 8, 'QP-QMR-02.pdf', '1643078997QP-QMR-02.pdf', 2),
+	(43, 11, 'QP-QMP-05.pdf', '1643079016QP-QMP-05.pdf', 2),
+	(44, 33, 'FM-QMR-01-01.pdf', '1643079902FM-QMR-01-01.pdf', 2),
+	(45, 34, 'FM-QMR-01-02.pdf', '1643080040FM-QMR-01-02.pdf', 2),
+	(46, 35, 'FM-QMR-02-01.pdf', '1643080336FM-QMR-02-01.pdf', 2),
+	(47, 36, 'FM-QMR-03-01.pdf', '1643080495FM-QMR-03-01.pdf', 2);
 /*!40000 ALTER TABLE `document_attachment` ENABLE KEYS */;
 
 -- Dumping structure for table admin_brandexiso.document_group
@@ -126,9 +147,9 @@ CREATE TABLE IF NOT EXISTS `document_group` (
   `cdate` datetime DEFAULT NULL,
   `udate` datetime DEFAULT NULL,
   PRIMARY KEY (`doc_group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table admin_brandexiso.document_group: ~11 rows (approximately)
+-- Dumping data for table admin_brandexiso.document_group: ~22 rows (approximately)
 /*!40000 ALTER TABLE `document_group` DISABLE KEYS */;
 INSERT INTO `document_group` (`doc_group_id`, `group_name`, `parent_id`, `cby`, `uby`, `cdate`, `udate`) VALUES
 	(1, '1. QMR', 0, NULL, NULL, NULL, NULL),
@@ -136,12 +157,23 @@ INSERT INTO `document_group` (`doc_group_id`, `group_name`, `parent_id`, `cby`, 
 	(3, '3. PRO', 0, NULL, NULL, NULL, NULL),
 	(4, '4. PER', 0, NULL, NULL, NULL, NULL),
 	(5, '5. PUR', 0, NULL, NULL, NULL, NULL),
-	(6, 'PRO-IT', 3, NULL, NULL, NULL, NULL),
-	(7, 'PRO-DI', 3, NULL, NULL, NULL, NULL),
-	(8, 'PRO-GR', 3, NULL, NULL, NULL, NULL),
+	(8, 'QP-PRO', 3, NULL, NULL, NULL, NULL),
 	(9, '6. STO', 0, NULL, NULL, NULL, NULL),
 	(10, 'QM', 1, NULL, NULL, NULL, NULL),
-	(11, 'QP', 1, NULL, NULL, NULL, NULL);
+	(11, 'QP-QMR', 1, NULL, NULL, NULL, NULL),
+	(12, 'QP-STO', 9, NULL, NULL, NULL, NULL),
+	(13, 'QP-SAL', 2, NULL, NULL, NULL, NULL),
+	(14, 'QP-PER', 4, NULL, NULL, NULL, NULL),
+	(15, 'QP-PUR', 5, NULL, NULL, NULL, NULL),
+	(16, 'FM-SAL', 2, NULL, NULL, NULL, NULL),
+	(17, 'SD-QMR', 1, NULL, NULL, NULL, NULL),
+	(18, 'FM-QMR', 1, NULL, NULL, NULL, NULL),
+	(19, 'FM-QMR-01', 18, NULL, NULL, NULL, NULL),
+	(20, 'FM-QMR-02', 18, NULL, NULL, NULL, NULL),
+	(21, 'FM-QMR-03', 18, NULL, NULL, NULL, NULL),
+	(22, 'FM-QMR-04', 18, NULL, NULL, NULL, NULL),
+	(23, 'FM-QMR-05', 18, NULL, NULL, NULL, NULL),
+	(24, 'FM-QMR-06', 18, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `document_group` ENABLE KEYS */;
 
 -- Dumping structure for table admin_brandexiso.document_link
@@ -257,23 +289,11 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table admin_brandexiso.sessions: ~13 rows (approximately)
+-- Dumping data for table admin_brandexiso.sessions: ~2 rows (approximately)
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('2LEbwqIkTCE3JLNt6svg8hujDGgp1dnGe2Jz6xcO', NULL, '42.83.147.34', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/74.0.3729.169 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidHhkZ3lWbVREV0ZUaGRFSmlZbTZLcTNIdHVWVElzNW12VVJwblFXbSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyMjoiaHR0cHM6Ly9icmFuZGV4aXNvLmNvbSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI4OiJodHRwczovL2JyYW5kZXhpc28uY29tL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1642520419),
-	('3seULbOoye274KMW3pzrYl475En866cEF5OcKd2C', NULL, '165.231.54.162', 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.0.6) Gecko/2009011913 Firefox/3.0.6', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRXh4cVhJMU9SSzhhb3FnaG1IaVUwdTZVSm16aVVxZlp0cE1JUHVRMSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyMjoiaHR0cHM6Ly9icmFuZGV4aXNvLmNvbSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI4OiJodHRwczovL2JyYW5kZXhpc28uY29tL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1642571469),
-	('5dAgcN8spWhYX99H5BEE2511iV7lcFBg4b7PF3Vf', NULL, '34.77.162.11', 'Expanse indexes the network perimeters of our customers. If you have any questions or concerns, please reach out to: scaninfo@expanseinc.com', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYnZTeEhKbFk0ZkppQVRzMzZ0MlBMdmNIZERId0RLOVQzb3FVc0NQcyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNjoiaHR0cHM6Ly93d3cuYnJhbmRleGlzby5jb20iO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNjoiaHR0cHM6Ly93d3cuYnJhbmRleGlzby5jb20iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1642511613),
-	('6J0Kk2vdOM1tr2SeMiCUVDLfTnIJ0XezwkoxC6CJ', NULL, '45.129.18.132', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiUmkwTEpDbGJrY0FZWmYxVzdya1FxMk81VXcxT1hBbjNxNXJRUmc4TyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1642517550),
-	('AV9L19AcnVSqlXs9sa2tuh4IKmi81KVxuSlKa50k', NULL, '35.164.133.172', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiekdiUjBNcW82WFhTSlhIMldBalFldzIxdjdEVVpKOG1HNUpDSkRXeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHBzOi8vYnJhbmRleGlzby5jb20vZm9yZ290LXBhc3N3b3JkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1642550759),
-	('aXxD6jxlbTb8s6MJDunzSA7ojsTl2nVaIjUeZVwD', NULL, '195.154.179.86', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidWVuTTVxSGRLTUZEZjZaOFM0M2FMMnkxN2pzM1ZqZHJ2OVp0QlFyQyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyMjoiaHR0cHM6Ly9icmFuZGV4aXNvLmNvbSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI4OiJodHRwczovL2JyYW5kZXhpc28uY29tL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1642493016),
-	('cnkjKsiV9SU9wsB103zGT1rT3mgtZ2JmzloBgOt2', 3, '180.183.102.193', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiVnFyRDRsVld0NDJ5Z2JaaEZuN2dKeDNuQnVlU2FzZWUzTUdIdHpaTCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQxOiJodHRwczovL3d3dy5icmFuZGV4aXNvLmNvbS9kb2N1bWVudGxpc3QvOSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRMM21yYy9obVdBUnBHMGpzZW81ZmUuNkdoUlh2Q24vVVhDa20uV3FTb1BkcWE2cXhUNVJULiI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkTDNtcmMvaG1XQVJwRzBqc2VvNWZlLjZHaFJYdkNuL1VYQ2ttLldxU29QZHFhNnF4VDVSVC4iO30=', 1642496891),
-	('kPjVkW8Y97CoBvfneMfEsN8DX1QfEEqOz8Jih7yY', NULL, '18.116.112.168', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZjN1UEswUkxoTlNwQUZJOENsQ0d0d2R5VW1EUjE3SVR5M1JYVXAxaCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyMjoiaHR0cHM6Ly9icmFuZGV4aXNvLmNvbSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI4OiJodHRwczovL2JyYW5kZXhpc28uY29tL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1642493315),
-	('MvEofCyAk1bYy12UzMfdhC4lyeXMcyx7atmAftiF', NULL, '123.60.83.110', 'Mozilla/5.0 (Windows NT 8.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.2341.88 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWlM1REVGODI4SWhQb2xpNUtBOUVGMzZQVUZxRW8zbExTWHlCWUwwUCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vd3d3LmJyYW5kZXhpc28uY29tL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1642526782),
-	('tKWRw1oreqEGlhTEnYzgQc73mfH3y7wwIb4e9RmD', NULL, '34.77.162.11', 'Expanse indexes the network perimeters of our customers. If you have any questions or concerns, please reach out to: scaninfo@expanseinc.com', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUHNsU1hlVmoyMEJDc0VaTXZHdG5GanFPaVF4MmUxYkFVV1FscGxpYiI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNjoiaHR0cHM6Ly93d3cuYnJhbmRleGlzby5jb20iO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNjoiaHR0cHM6Ly93d3cuYnJhbmRleGlzby5jb20iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1642496449),
-	('Vy7sPH9GNHHUncreeIeaVsx382pO9AaUDGmdDsoA', NULL, '45.129.18.206', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRHRCdmFJeVVBRWdLWHZQbmxWMTh2ZEFFRFlvSUZvMlhnSkwwdHNlRSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyMjoiaHR0cHM6Ly9icmFuZGV4aXNvLmNvbSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1642517549),
-	('ws0HqdqVkNKns6L84VC2PxO07zut0g8ZpDP48Kn9', 3, '180.183.102.193', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiVlo0ellpT1gxR0J6UnhFSDJYaGg1dHpOYXZRVFBBSmljRkVzTEJHOSI7czozOiJ1cmwiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRMM21yYy9obVdBUnBHMGpzZW81ZmUuNkdoUlh2Q24vVVhDa20uV3FTb1BkcWE2cXhUNVJULiI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkTDNtcmMvaG1XQVJwRzBqc2VvNWZlLjZHaFJYdkNuL1VYQ2ttLldxU29QZHFhNnF4VDVSVC4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwczovL3d3dy5icmFuZGV4aXNvLmNvbS9Vc2VyIjt9fQ==', 1642555041),
-	('y23pDPpTPKt8rzKRum8D54TxS94DcGZJhEhuJkRc', NULL, '123.60.83.110', 'Mozilla/5.0 (Windows NT 8.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.2341.88 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVjc0aEdDUU9ieVBNRzlBa1RUWXY1QUdPSUR0aFJMMjRTUUpzSWI3ayI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNjoiaHR0cHM6Ly93d3cuYnJhbmRleGlzby5jb20iO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNjoiaHR0cHM6Ly93d3cuYnJhbmRleGlzby5jb20iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1642526781),
-	('ZDVEgC637gmFGqlRcajdS7X2syoKJL145FGfnlrx', NULL, '34.221.176.90', 'Mozilla/5.0 (Macintosh; PPC Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNkVGc00wYnREbnNkQzVwTXBPM2dreHFVY1F4d1RvTzZhMnJDc3UwaSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyMjoiaHR0cHM6Ly9icmFuZGV4aXNvLmNvbSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI4OiJodHRwczovL2JyYW5kZXhpc28uY29tL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1642550752);
+	('iN02JHhwddOIAQtwCwnZhy154v1wtVqT4B7glbh7', 5, '2403:6200:89a6:ef9b:18e1:8603:f95e:eb40', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiZ1pNU25DNWNNU2M3bTNOeWd6Z2hFQmlYTmcyRm51eG1zN1AwazhXRyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjc5OiJodHRwczovL2JyYW5kZXhpc28uY29tL2Rvd25sb2FkZmlsZS8xNjQzMDgwNDk1Rk0tUU1SLTAzLTAxLnBkZi9GTS1RTVItMDMtMDEucGRmIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGNJWVhlN0FjbU95ZnU1REZ4MTY3aWVTdklEdHYvNHJoTzRQMGhSOEx2bnUxUjZkdDVNcWh1IjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRjSVlYZTdBY21PeWZ1NURGeDE2N2llU3ZJRHR2LzRyaE80UDBoUjhMdm51MVI2ZHQ1TXFodSI7fQ==', 1643090749),
+	('xH0PiQdsV7Qz9wmIbtgdILh5zJpEZ27iyky2rwnw', 3, '2403:6200:89a6:ef9b:5942:2237:6144:a45a', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiQ3h5WnhLd1MwOXNkcXdyN2JscTNDTld6UmRKU2hheWFMeWRMdWRzUSI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQyOiJodHRwczovL3d3dy5icmFuZGV4aXNvLmNvbS9kb2N1bWVudGxpc3QvMTIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTDNtcmMvaG1XQVJwRzBqc2VvNWZlLjZHaFJYdkNuL1VYQ2ttLldxU29QZHFhNnF4VDVSVC4iO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJEwzbXJjL2htV0FScEcwanNlbzVmZS42R2hSWHZDbi9VWENrbS5XcVNvUGRxYTZxeFQ1UlQuIjt9', 1643095681);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 
 -- Dumping structure for table admin_brandexiso.users
@@ -301,18 +321,25 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `updated_by` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table admin_brandexiso.users: ~7 rows (approximately)
+-- Dumping data for table admin_brandexiso.users: ~14 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `dep_id`, `level`, `is_manager`, `is_active`, `name`, `nickname`, `position`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-	(3, 'pongpet', 7, 5, 2, 1, 'พงศ์เพชร มีทรัพย์', 'พี่อ้วน', 'Programmer', 'pongpet007@gmail.com', NULL, '$2y$10$L3mrc/hmWARpG0jseo5fe.6GhRXvCn/UXCkm.WqSoPdqa6qxT5RT.', NULL, NULL, 'fWL0Ah9AnkL4tv04PoNBAAYylVlWKwh6NhPVbpcDKrbyqYcU2PyWnbVCVbrQ', NULL, NULL, NULL, NULL, '2022-01-17 14:14:43', 'พงศ์เพชร มีทรัพย์'),
-	(4, 'korn', 1, 1, 1, 1, 'Korn', 'น้องกร', 'Programmer', NULL, NULL, '$2y$10$mnvHy5KDvTR8AgV9LQhygOzsidewRNOpVCqv92M1OK8UYVKQQ.IEm', NULL, NULL, 'n0kgmNE7zX2eS3plt7jdjevkGdRpWD5wdUwZ3naNI6Ummj4zLspxj6SogwN5', NULL, NULL, NULL, NULL, '2022-01-12 09:40:14', 'พงศ์เพชร มีทรัพย์'),
-	(5, 'choltisa', 7, 5, 1, 1, 'ชลธิสา สมาน', 'พี่นะ', 'QRM', NULL, NULL, '$2y$10$cIYXe7AcmOyfu5DFx167ieSvIDtv/4rhO4P0hR8Lvnu1R6dt5Mqhu', NULL, NULL, 'Fr7ajoIAa9hPNS0VrvVUf7aNFS7nNpCYgUzNRkF5y6TCOnC1CjtnatVV3ttn', NULL, NULL, NULL, NULL, '2022-01-11 16:25:15', 'ชลธิสา สามาน'),
+	(3, 'pongpet', 7, 5, 2, 1, 'พงศ์เพชร มีทรัพย์', 'อ้วน', 'Programmer', 'pongpet007@gmail.com', NULL, '$2y$10$L3mrc/hmWARpG0jseo5fe.6GhRXvCn/UXCkm.WqSoPdqa6qxT5RT.', NULL, NULL, 'YBya3IVgZ9tyJs84tbPmKD1sTRtlrpvS1ya6VxzVfZfAzfovqtVwhXmEWUA0', NULL, NULL, NULL, NULL, '2022-01-20 08:32:18', 'พงศ์เพชร มีทรัพย์'),
+	(4, 'korn', 3, 1, 1, 1, 'สัชฌุกร หอมพินิจ', 'กร', 'Programmer', NULL, NULL, '$2y$10$mnvHy5KDvTR8AgV9LQhygOzsidewRNOpVCqv92M1OK8UYVKQQ.IEm', NULL, NULL, 'rB5exQfTo8KDZMJBqNNLMGV2moG6qyD041H7ahMTGT7xHHAYBt9MnvwuFH0h', NULL, NULL, NULL, NULL, '2022-01-20 08:32:26', 'พงศ์เพชร มีทรัพย์'),
+	(5, 'choltisa', 7, 5, 1, 1, 'ชลธิสา สมาน', 'นะ', 'QRM', NULL, NULL, '$2y$10$cIYXe7AcmOyfu5DFx167ieSvIDtv/4rhO4P0hR8Lvnu1R6dt5Mqhu', NULL, NULL, 'KS9o6zbA7Gs9rOZ2AILyJUxIBVC3qYeO3AeKBiGAjdkHUkjbh7A3PGRl9SpL', NULL, NULL, NULL, NULL, '2022-01-20 08:32:35', 'พงศ์เพชร มีทรัพย์'),
 	(6, 'kodchakorn', 9, 1, 2, 1, 'คุณกชกร เอื้อเฟื้อ', 'ฟลุ๊ค', 'เจ้าหน้าที่ดูแลสื่อโซเชี่ยลมีเดีย', NULL, NULL, '$2y$10$XU7jvULpWa0Q7q4jCiuHyeULxlQcqxTn5kzEiNq9ntz0okiPkoAHK', NULL, NULL, NULL, NULL, NULL, '2022-01-11 08:49:01', 'ชลธิสา สามาน', '2022-01-11 08:49:01', NULL),
-	(7, 'chada', 7, 1, 1, 1, 'Chada Kochansri', 'Prim', 'CEO', NULL, NULL, '$2y$10$589fcg6kven773tQbPcAv./yzip1LYgS9tarbQdYsp9ey61FvAssy', NULL, NULL, 'DHrDevOGpZJeCWHv8DXsevcLRArZJuyHt7OkOaMFCRaK5grdSTZvK2NsBJdi', NULL, NULL, '2022-01-11 11:43:35', 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:39:51', 'พงศ์เพชร มีทรัพย์'),
-	(8, 'jasusiri', 3, 1, 2, 1, 'คุณจารุสิริ ผิวเกลี้ยง', 'คุณบิ๊ก', 'ผู้จัดการฝ่ายขาย', NULL, NULL, '$2y$10$wfJS1viO7L8ex8yA.E4WrOzEWcR9v66h35UmRb0Lcv7uDlVOwPVr.', NULL, NULL, NULL, NULL, NULL, '2022-01-11 16:42:18', 'ชลธิสา สมาน', '2022-01-11 16:42:18', NULL),
-	(9, 'Niracha', 7, 5, 2, 1, 'Niracha', 'มุก', 'DCO', NULL, NULL, '$2y$10$XaKvsHgRSAeDjqgrcAE8CeCShWg/o1bFIqWlnMhApza9lGlW17HvC', NULL, NULL, 'fDi7i6yNMcEP0yS2rpeMlcLmOAiPIOdNNH8RoAhGpGTjOPM9lfIGI37kd09V', NULL, NULL, '2022-01-11 17:17:32', 'ชลธิสา สมาน', '2022-01-11 17:19:23', 'ชลธิสา สมาน');
+	(7, 'chada', 7, 5, 1, 1, 'ชาฏา โกจารย์ศรี', 'ปริม', 'CEO', NULL, NULL, '$2y$10$589fcg6kven773tQbPcAv./yzip1LYgS9tarbQdYsp9ey61FvAssy', NULL, NULL, 'DHrDevOGpZJeCWHv8DXsevcLRArZJuyHt7OkOaMFCRaK5grdSTZvK2NsBJdi', NULL, NULL, '2022-01-11 11:43:35', 'พงศ์เพชร มีทรัพย์', '2022-01-21 09:07:16', 'ชลธิสา สมาน'),
+	(8, 'jasusiri', 3, 1, 2, 1, 'คุณจารุสิริ ผิวเกลี้ยง', 'บิ๊ก', 'ผู้จัดการฝ่ายขาย', NULL, NULL, '$2y$10$wfJS1viO7L8ex8yA.E4WrOzEWcR9v66h35UmRb0Lcv7uDlVOwPVr.', NULL, NULL, NULL, NULL, NULL, '2022-01-11 16:42:18', 'ชลธิสา สมาน', '2022-01-20 08:32:52', 'พงศ์เพชร มีทรัพย์'),
+	(9, 'Niracha', 7, 5, 2, 1, 'Niracha', 'มุก', 'DCO', NULL, NULL, '$2y$10$XaKvsHgRSAeDjqgrcAE8CeCShWg/o1bFIqWlnMhApza9lGlW17HvC', NULL, NULL, 'fDi7i6yNMcEP0yS2rpeMlcLmOAiPIOdNNH8RoAhGpGTjOPM9lfIGI37kd09V', NULL, NULL, '2022-01-11 17:17:32', 'ชลธิสา สมาน', '2022-01-11 17:19:23', 'ชลธิสา สมาน'),
+	(10, 'Bow', 3, 1, 2, 1, 'คุณกนกวรรณ มโนธรรม', 'โบว์', 'เว็บไซต์ออนไลน์', NULL, NULL, '$2y$10$vbiNZuIfyoLjYbBXMHdnOe/VUCXa0vY5/6Wtua1nWxvmOXAqZ2dYu', NULL, NULL, NULL, NULL, NULL, '2022-01-21 09:09:16', 'ชลธิสา สมาน', '2022-01-21 09:09:16', NULL),
+	(11, 'Chanchira', 3, 1, 2, 1, 'คุณจันทร์จิรา ยาวะโนภาส', 'บลู', 'ผู้เชี่ยวชาญด้านเสิร์ชเอ็นจิ้น', NULL, NULL, '$2y$10$/Vr170WU7Qp/iS2k46MyOO5b4daL6AzRAMQx.iJVgTPJi2S1Jpbte', NULL, NULL, NULL, NULL, NULL, '2022-01-21 09:09:54', 'ชลธิสา สมาน', '2022-01-21 09:09:54', NULL),
+	(12, 'Jam', 3, 1, 2, 1, 'คุณกัญญารัตน กอละพันธุ์', 'แจม', 'ออนไลน์เว็บไซต์', NULL, NULL, '$2y$10$rp4J8op37udFbQqQjcHD1uZ4t3WNnEijNU9s8BD7P3SICJIwHB4yS', NULL, NULL, NULL, NULL, NULL, '2022-01-21 09:10:40', 'ชลธิสา สมาน', '2022-01-21 09:10:40', NULL),
+	(13, 'not', 3, 1, 2, 1, 'คุณศรีรัตน์ ไชยเสนา', 'น๊อต', 'ออนไลน์เว็บไซต์', NULL, NULL, '$2y$10$OFKcuuQsl7trwWAAfjD.6.COhsWLjME2QaZek0eG/bW3TlcGmycJK', NULL, NULL, NULL, NULL, NULL, '2022-01-21 09:11:57', 'ชลธิสา สมาน', '2022-01-21 09:11:57', NULL),
+	(14, 'peck', 3, 1, 2, 1, 'คุณอิทธิพล ชนช้าง', 'เพค', 'กราฟิกดีไซน์', NULL, NULL, '$2y$10$GhxxLDI.0iAhHAKwn9ckUORZqsibSe8eqWcx6672B9oGIyHR7jJ0e', NULL, NULL, NULL, NULL, NULL, '2022-01-21 09:13:37', 'ชลธิสา สมาน', '2022-01-21 09:13:37', NULL),
+	(15, 'pop', 3, 1, 2, 1, 'คุณหนึ่งฤทัย ชมภูง้าว', 'ป๊อป', 'กราฟิกดีไซน์', NULL, NULL, '$2y$10$3Kq7LpUwiHmWhFOJx4bG3.HkXkfhBsCIJj7EnV2u93QmE7An3WMQS', NULL, NULL, NULL, NULL, NULL, '2022-01-21 09:14:36', 'ชลธิสา สมาน', '2022-01-21 09:14:36', NULL),
+	(16, 'sunisa', 3, 1, 2, 1, 'คุณสุนิสา มั่นประพันธ์', 'น้อยหน่า', 'โซเชี่ยลมีเดีย', NULL, NULL, '$2y$10$yLBYr.wbDEBLCVfQo8nzr.X8ioty1tQ0zonvWmWM2Xls8wVS15AKG', NULL, NULL, NULL, NULL, NULL, '2022-01-21 09:15:05', 'ชลธิสา สมาน', '2022-01-21 09:15:05', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table admin_brandexiso.users_control
@@ -342,29 +369,39 @@ CREATE TABLE IF NOT EXISTS `user_document_group` (
   `cdate` datetime DEFAULT NULL,
   PRIMARY KEY (`udg_id`),
   UNIQUE KEY `user_id_doc_group_id` (`user_id`,`doc_group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
 
--- Dumping data for table admin_brandexiso.user_document_group: ~18 rows (approximately)
+-- Dumping data for table admin_brandexiso.user_document_group: ~28 rows (approximately)
 /*!40000 ALTER TABLE `user_document_group` DISABLE KEYS */;
 INSERT INTO `user_document_group` (`udg_id`, `user_id`, `doc_group_id`, `cby`, `cdate`) VALUES
-	(21, 3, 1, 'พงศ์เพชร มีทรัพย์', '2022-01-18 11:26:28'),
-	(22, 5, 1, 'พงศ์เพชร มีทรัพย์', '2022-01-18 11:26:28'),
-	(23, 7, 1, 'พงศ์เพชร มีทรัพย์', '2022-01-18 11:26:28'),
 	(37, 3, 2, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:21:53'),
 	(38, 5, 2, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:21:53'),
 	(39, 7, 2, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:21:53'),
-	(40, 3, 3, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:21:57'),
-	(41, 5, 3, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:21:57'),
-	(42, 7, 3, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:21:57'),
 	(43, 3, 4, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:22:01'),
 	(44, 5, 4, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:22:01'),
 	(45, 7, 4, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:22:01'),
 	(46, 3, 5, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:22:05'),
 	(47, 5, 5, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:22:05'),
 	(48, 7, 5, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:22:05'),
-	(49, 3, 9, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:22:09'),
-	(50, 5, 9, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:22:09'),
-	(51, 7, 9, 'พงศ์เพชร มีทรัพย์', '2022-01-18 15:22:09');
+	(74, 3, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(75, 4, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(76, 5, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(77, 6, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(78, 7, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(79, 10, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(80, 11, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(81, 12, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(82, 13, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(83, 14, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(84, 15, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(85, 16, 3, 'ชลธิสา สมาน', '2022-01-21 10:08:53'),
+	(86, 3, 9, 'พงศ์เพชร มีทรัพย์', '2022-01-24 09:17:08'),
+	(87, 5, 9, 'พงศ์เพชร มีทรัพย์', '2022-01-24 09:17:08'),
+	(88, 7, 9, 'พงศ์เพชร มีทรัพย์', '2022-01-24 09:17:08'),
+	(89, 3, 1, 'พงศ์เพชร มีทรัพย์', '2022-01-24 09:23:34'),
+	(90, 4, 1, 'พงศ์เพชร มีทรัพย์', '2022-01-24 09:23:34'),
+	(91, 5, 1, 'พงศ์เพชร มีทรัพย์', '2022-01-24 09:23:34'),
+	(92, 7, 1, 'พงศ์เพชร มีทรัพย์', '2022-01-24 09:23:34');
 /*!40000 ALTER TABLE `user_document_group` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
