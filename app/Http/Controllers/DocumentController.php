@@ -19,18 +19,31 @@ class DocumentController extends Controller
         $description = "";
 
         $keyword = $request->input('keyword');
+        $year = $request->input('year');
 
         $group = DB::table('document_group')->where('doc_group_id', $group_id)->get()->first();
 
-        $documents = DB::table('document')
-                        ->where('doc_group_id', $group_id)
-                        ->whereRaw("( doc_date like '%$keyword%' or doc_code like '%$keyword%' or  rev like '%$keyword%' or  title like '%$keyword%') ")
-                        ->get();
-        foreach ($documents as $document) {
-            $document->attachments = DB::table('document_attachment')->where('doc_id', $document->doc_id)->get();
+        $query = DB::table('document')
+            ->leftJoin('document_year','document.doc_id','=','document_year.doc_id')
+            ->select('document.*')
+            ->where('doc_group_id', $group_id)
+            ->where('version_id', 1)
+            ->whereRaw("( doc_date like '%$keyword%' or doc_code like '%$keyword%' or  rev like '%$keyword%' or  title like '%$keyword%') ")
+            ;
+        if($year>0){
+            $query->where('document_year.year',$year);
         }
 
-        return view("admin.pages.document.show", compact('title', 'keyword', 'description', 'group', 'group_id', 'documents','keyword'));
+        $documents = $query->distinct()->get();
+
+        foreach ($documents as $document) {
+            $document->attachments = DB::table('document_attachment')->where('doc_id', $document->doc_id)->get();
+            $document->years =  DB::table('document_year')->where('doc_id', $document->doc_id)->get();
+        }
+        $yearsearch = DB::table('document_year')->select('year')->distinct()->orderBy('year','desc')->get();
+        // dd($yearsearch);
+
+        return view("admin.pages.document.show", compact('title', 'keyword', 'description', 'group', 'group_id', 'documents', 'keyword', 'year', 'yearsearch'));
     }
 
     /**
@@ -45,13 +58,13 @@ class DocumentController extends Controller
         $documentgroups = DB::table('document_group')->where("parent_id", 0)->get();
         foreach ($documentgroups as $value) {
             $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
-            foreach ( $value->sub as $value2) {
+            foreach ($value->sub as $value2) {
                 $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
             }
         }
         $group = DB::table('document_group')->where('doc_group_id', $group_id)->get()->first();
 
-        return view('admin.pages.document.form', compact('method', 'group','documentgroups'));
+        return view('admin.pages.document.form', compact('method', 'group', 'documentgroups'));
     }
 
     /**
@@ -99,17 +112,27 @@ class DocumentController extends Controller
         $documentgroups = DB::table('document_group')->where("parent_id", 0)->get();
         foreach ($documentgroups as $value) {
             $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
-            foreach ( $value->sub as $value2) {
+            foreach ($value->sub as $value2) {
                 $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
             }
+        }
+        $years = array();
+        for ($i = date('Y') + 1; $i >= 2021; $i--) {
+            $years[$i] = $i;
         }
 
         $document =  DB::table('document')->where('doc_id', $id)->get()->first();
         $group = DB::table('document_group')->where('doc_group_id', $document->doc_id)->get()->first();
         $attachments = DB::table('document_attachment')->where('doc_id', $id)->get();
+        $document_years = DB::table('document_year')->where('doc_id', $id)->get();
+        $yearchecked = array();
+        foreach ($document_years as $y) {
+            $yearchecked[] = $y->year;
+        }
+        // dd($yearchecked);
         $method = "Edit";
 
-        return view('admin.pages.document.form', compact('method', 'document', 'group','attachments','documentgroups'));
+        return view('admin.pages.document.form', compact('method', 'document', 'group', 'attachments', 'documentgroups', 'years', 'yearchecked'));
     }
 
     /**
@@ -129,6 +152,8 @@ class DocumentController extends Controller
             'title' => 'required'
         ]);
 
+        $year = $request->input("year");
+        $version_id = $request->input("version_id");
         $doc_group_id = $request->input("doc_group_id");
         $doc_code = $request->input("doc_code");
         $rev = $request->input("rev");
@@ -140,6 +165,7 @@ class DocumentController extends Controller
         DB::table("document")
             ->where('doc_id', $id)
             ->update([
+                'version_id' => $version_id,
                 'doc_group_id' => $doc_group_id,
                 'doc_code' => $doc_code,
                 'rev' => $rev,
@@ -147,9 +173,21 @@ class DocumentController extends Controller
                 'title' => $title,
                 'detail' => $detail,
                 'remark' => $remark,
-
             ]);
-        // echo $id;
+
+        if (is_array($year) && sizeof($year) > 0) {
+            DB::table("document_year")
+                ->where('doc_id', $id)
+                ->delete();
+
+            foreach ($year as $y) {
+                DB::table("document_year")->insert([
+                    'doc_id' => $id,
+                    'year' => $y
+                ]);
+            }
+        }
+
         $document = DB::table("document")->where('doc_id', $id)->get()->first();
         return redirect("documentlist/$document->doc_group_id");
     }

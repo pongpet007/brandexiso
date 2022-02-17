@@ -23,14 +23,43 @@ class Layout extends Component
             ->join('user_document_group', 'document_group.doc_group_id', '=', 'user_document_group.doc_group_id')
             ->where('user_document_group.user_id', Auth::user()->id)
             ->where("parent_id", 0)
-            ->orderBy('group_name','asc')
+            ->orderBy('group_name', 'asc')
             ->get();
         foreach ($documentgroups as $value) {
+            $value->ct = DB::table('document')->where('doc_group_id', $value->doc_group_id)->where('version_id', 1)->count();
             $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
             foreach ($value->sub as $value2) {
+                $value2->ct = DB::table('document')->where('doc_group_id', $value2->doc_group_id)->where('version_id', 1)->count();
                 $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
+                foreach ($value2->sub2 as $value3) {
+                    $value3->ct = DB::table('document')->where('doc_group_id', $value3->doc_group_id)->where('version_id', 1)->count();
+                }
             }
         }
+        // dd($documentgroups);
+        return $documentgroups;
+    }
+
+    public function getGroup2()
+    {
+        $documentgroups = DB::table('document_group')
+            ->join('user_document_group', 'document_group.doc_group_id', '=', 'user_document_group.doc_group_id')
+            ->where('user_document_group.user_id', Auth::user()->id)
+            ->where("parent_id", 0)
+            ->orderBy('group_name', 'asc')
+            ->get();
+        foreach ($documentgroups as $value) {
+            $value->ct = DB::table('document')->where('doc_group_id', $value->doc_group_id)->where('version_id', 2)->count();
+            $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->get();
+            foreach ($value->sub as $value2) {
+                $value2->ct = DB::table('document')->where('doc_group_id', $value2->doc_group_id)->where('version_id', 2)->count();
+                $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->get();
+                foreach ($value2->sub2 as $value3) {
+                    $value3->ct = DB::table('document')->where('doc_group_id', $value3->doc_group_id)->where('version_id', 2)->count();
+                }
+            }
+        }
+        // dd($documentgroups);
         return $documentgroups;
     }
 
@@ -42,6 +71,7 @@ class Layout extends Component
     public function render()
     {
         $menugroups = $this->getGroup();
-        return view('admin.layout.major', compact('menugroups'));
+        $menugroups2 = $this->getGroup2();
+        return view('admin.layout.major', compact('menugroups','menugroups2'));
     }
 }

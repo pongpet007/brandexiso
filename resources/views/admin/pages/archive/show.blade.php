@@ -39,7 +39,7 @@
                 <table class="table table-bordered bg-white">
                     <tr>
                         <td colspan="7">
-                            <form action="{{ url("documentlist/$group_id") }}">
+                            <form action="{{ url("archivelist/$group_id") }}">
                                 @csrf
                                 @method('POST')
                                 <div class="row">
