@@ -92,7 +92,10 @@
                                 @endforeach
                             </td>
                             <td>{{ $document->rev }}</td>
-                            <td>{{ $document->doc_date }}</td>
+                            <td>
+                                {{ $document->doc_date }}
+                                {!! $document->doc_date?'<br>expire : <br><span style="color:red ">'.$document->expire.' </span>':''!!}
+                            </td>
                             <td>{{ $document->title }}</td>
                             <td>
                                 @if (sizeof($document->attachments) > 0)

@@ -12,22 +12,33 @@ class DocumentGroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = "Brandex ISO";
         $keyword = "";
         $description = "";
 
-        $documentgroups = DB::table('document_group')->where("parent_id", 0)->orderBy('group_name','asc')->get();
-        foreach ($documentgroups as $value) {
-            $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->orderBy('group_name','asc')->get();
-            foreach ( $value->sub as $value2) {
-                $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->orderBy('group_name','asc')->get();
+        $parent_id = $request->input("parent_id");
+
+        if ($parent_id == "") {
+            $documentgroups = DB::table('document_group')->where("parent_id", 0)->orderBy('position', 'asc')->get();
+            foreach ($documentgroups as $value) {
+                $value->sub = DB::table('document_group')->where("parent_id", $value->doc_group_id)->orderBy('position', 'asc')->get();
+                foreach ($value->sub as $value2) {
+                    $value2->sub2 = DB::table('document_group')->where("parent_id", $value2->doc_group_id)->orderBy('position', 'asc')->get();
+                }
+            }
+        }
+        else{
+            $documentgroups = DB::table('document_group')->where("parent_id", $parent_id)->orderBy('position', 'asc')->get();
+            foreach ($documentgroups as $value) {
+                $value->sub  = [];
             }
         }
 
+        // dd($documentgroups);
 
-        return view("admin.pages.documentgroup.show", compact('title', 'keyword', 'description', 'documentgroups'));
+        return view("admin.pages.documentgroup.show", compact('title', 'keyword', 'description', 'documentgroups', "parent_id"));
     }
 
     /**
@@ -38,6 +49,7 @@ class DocumentGroupController extends Controller
     public function create()
     {
         $method = "Add";
+
         $xx =  DB::table('document_group')->where("parent_id", 0)->pluck('group_name', 'doc_group_id');
 
         $maingroups = array();
@@ -63,10 +75,15 @@ class DocumentGroupController extends Controller
 
         $group_name = $request->input("group_name");
         $parent_id = $request->input("parent_id");
+
         DB::table("document_group")->insert([
             'group_name' => $group_name,
             'parent_id' => $parent_id
         ]);
+
+        $doc_group_id = DB::getPdo()->lastInsertId();
+        DB::table('document_group')->where('doc_group_id', $doc_group_id)->update(['position' => $doc_group_id]);
+
         return redirect("DocumentGroup");
     }
 
@@ -141,5 +158,58 @@ class DocumentGroupController extends Controller
             ->where('doc_group_id', $id)
             ->delete();
         return redirect("DocumentGroup");
+    }
+
+    public function up($doc_group_id)
+    {
+
+        $group_current = DB::table("document_group")
+            ->where('doc_group_id', $doc_group_id)->get()->first();
+        // dd($group_current);
+
+        $group_replace = DB::table("document_group")
+            ->where('parent_id', $group_current->parent_id)
+            ->where('position', '<', $group_current->position)
+            ->orderBy('position', 'desc')
+            ->get()->first();
+
+        if ($group_replace == null) {
+            return redirect("DocumentGroup?parent_id=".$group_current->parent_id);
+        }
+        // dd($group_current,$group_replace);
+
+        DB::table("document_group")
+            ->where('doc_group_id', $doc_group_id)->update(['position' => $group_replace->position]);
+
+        DB::table("document_group")
+            ->where('doc_group_id', $group_replace->doc_group_id)->update(['position' => $group_current->position]);
+
+        return redirect("DocumentGroup?parent_id=".$group_current->parent_id);
+    }
+
+    public function down($doc_group_id)
+    {
+        $group_current = DB::table("document_group")
+            ->where('doc_group_id', $doc_group_id)->get()->first();
+        // dd($group_current);
+
+        $group_replace = DB::table("document_group")
+            ->where('parent_id', $group_current->parent_id)
+            ->where('position', '>', $group_current->position)
+            ->orderBy('position', 'asc')
+            ->get()->first();
+
+        if ($group_replace == null) {
+            return redirect("DocumentGroup?parent_id=".$group_current->parent_id);
+        }
+        // dd($group_current,$group_replace);
+
+        DB::table("document_group")
+            ->where('doc_group_id', $doc_group_id)->update(['position' => $group_replace->position]);
+
+        DB::table("document_group")
+            ->where('doc_group_id', $group_replace->doc_group_id)->update(['position' => $group_current->position]);
+
+        return redirect("DocumentGroup?parent_id=".$group_current->parent_id);
     }
 }

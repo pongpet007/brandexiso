@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 
 class UserAdminController extends Controller
 {
@@ -25,11 +25,10 @@ class UserAdminController extends Controller
 
         $users = DB::table('users')
             ->leftJoin('department', 'users.dep_id', '=', 'department.dep_id')
-            ->select('users.*','dep_name')
+            ->select('users.*', 'dep_name')
             ->get();
 
         return view("admin.pages.user.show", compact('title', 'keyword', 'description', 'users'));
-
     }
 
     /**
@@ -83,9 +82,9 @@ class UserAdminController extends Controller
         $params["is_manager"] = $is_manager;
         $params["is_active"] = $is_active;
         $params["position"] = $position;
-        $params['created_at']= date('Y-m-d H:i:s');
-        $params['created_by']= Auth::user()->name;
-        $params['updated_at']= date('Y-m-d H:i:s');
+        $params['created_at'] = date('Y-m-d H:i:s');
+        $params['created_by'] = Auth::user()->name;
+        $params['updated_at'] = date('Y-m-d H:i:s');
 
 
 
@@ -118,7 +117,7 @@ class UserAdminController extends Controller
         $user = DB::table("users")->where('id', $id)->first();
 
         $method = "Edit";
-        return view('admin.pages.user.form', compact('method', 'user','departments'));
+        return view('admin.pages.user.form', compact('method', 'user', 'departments'));
     }
 
     /**
@@ -132,15 +131,16 @@ class UserAdminController extends Controller
     {
         //
         $request->validate([
-            'username' =>[
+            'username' => [
                 'required',
                 Rule::unique('users')->ignore($id),
-            ]
-            ,
+            ],
             'name' => 'required',
             'nickname' => 'required',
             'position' => 'required'
         ]);
+
+
 
         $name = $request->input("name");
         $nickname = $request->input("nickname");
@@ -164,8 +164,24 @@ class UserAdminController extends Controller
         $params["is_manager"] = $is_manager;
         $params["is_active"] = $is_active;
         $params["position"] = $position;
-        $params['updated_by']= Auth::user()->name;
-        $params['updated_at']= date('Y-m-d H:i:s');
+        $params['updated_by'] = Auth::user()->name;
+        $params['updated_at'] = date('Y-m-d H:i:s');
+
+        if ($request->file('signature')->isValid()) {
+            // $path = $request->signature->path();
+            // $extension = $request->signature->extension();
+            // $clientOriginalName = $request->signature->getClientOriginalName();
+            // $newFileName = time() . $clientOriginalName;
+            // $uploadedFile = $request->file('signature');
+            // dd($path,$extension,$clientOriginalName,$newFileName,$uploadedFile);
+            // Save File to local drive
+            // Storage::putFileAs('attachment.signature', $uploadedFile, $newFileName);
+
+            $filepath = $request->file('signature')->store('attachment/signature');
+            $params['signature'] = $filepath;
+            
+        }
+
 
         DB::table("users")
             ->where('id', $id)

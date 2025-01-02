@@ -37,7 +37,7 @@
     <!-- Content Row -->
     <div class="row">
         <div class="col-lg-12">
-            <form action="{{ strtolower($method) == 'add' ? url('User') : url("User/$user->id") }}" method="POST">
+            <form action="{{ strtolower($method) == 'add' ? url('User') : url("User/$user->id") }}" method="POST"  enctype="multipart/form-data">
                 @csrf
 
                 @if (strtolower($method) == 'add')
@@ -192,6 +192,18 @@
                             <div class="col-xl-4">
                                 <input type="text" class="form-control" name="position"
                                     value="{{ $position }}" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-xl-2 text-right pt-2">
+                                Signature
+                            </div>
+                            @php
+                                $signature =  (isset($user) ? $user->signature : '');
+                            @endphp
+                            <div class="col-xl-4">                                
+                                <input type="file" name="signature">                                   
                             </div>
                         </div>
 

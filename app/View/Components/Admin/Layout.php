@@ -72,6 +72,11 @@ class Layout extends Component
     {
         $menugroups = $this->getGroup();
         $menugroups2 = $this->getGroup2();
-        return view('admin.layout.major', compact('menugroups','menugroups2'));
+        $approve1 = DB::table('form_request')->where('is_approve',1)->count();
+        $approve2 = DB::table('form_request')->where('is_approve',2)->count();
+        $approve3 = DB::table('form_request')->where('is_approve',3)->count();
+
+
+        return view('admin.layout.major', compact('menugroups','menugroups2','approve1','approve2','approve3'));
     }
 }

@@ -11,6 +11,8 @@ use App\Http\Controllers\DocumentAttachmentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentGroupController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\FormApproveController;
+use App\Http\Controllers\FormRequestController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserControlController;
 use App\Http\Controllers\HomeController;
@@ -46,7 +48,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('Department', DepartmentController::class);
     Route::resource('User', UserAdminController::class);
     Route::resource('UserControl', UserControlController::class);
+    
     Route::resource('DocumentGroup', DocumentGroupController::class);
+    Route::get('moveup/{group_id}',[DocumentGroupController::class,'up']);
+    Route::get('movedown/{group_id}',[DocumentGroupController::class,'down']);
+
     Route::resource('UserDocumentGroup', UserDocumentGroupController::class);
 
     Route::resource('Document', DocumentController::class);
@@ -69,6 +75,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('deleteFile/{attachment_id}',[DocumentAttachmentController::class,"deleteFile"])->name('deleteFile');
     Route::get('changeStatus/{attachment_id}',[DocumentAttachmentController::class,"changeStatus"]);
     Route::get('getpdf',[DocumentAttachmentController::class,"pdf"]);
+
+    Route::get('form-request',[FormRequestController::class,'index']);
+    Route::post('form-request-save',[FormRequestController::class,'save']);   
+
+    Route::get('form-request-list/{is_approve}',[FormApproveController::class,'index']);
+    Route::get('form-request-approve/{fr_id}',[FormApproveController::class,'approve']);
+    Route::post('form-request-approve-save/{fr_id}',[FormApproveController::class,'approvesave']);
+    Route::get('viewpdf/{fr_id}',[FormApproveController::class,'showpdf']);
+
 
     Route::get('dashboard', function () {
         return view('dashboard');

@@ -22,17 +22,21 @@ class DocumentController extends Controller
         $year = $request->input('year');
 
         $group = DB::table('document_group')->where('doc_group_id', $group_id)->get()->first();
-
+        // print_r($group);exit();
         $query = DB::table('document')
-            ->leftJoin('document_year','document.doc_id','=','document_year.doc_id')
-            ->select('document.*')
+            ->leftJoin('document_year', 'document.doc_id', '=', 'document_year.doc_id')
+            ->selectRaw('document.*,DATE_ADD(doc_date ,INTERVAL 3 YEAR) AS expire')
             ->where('doc_group_id', $group_id)
-            ->where('version_id', 1)
-            ->whereRaw("( doc_date like '%$keyword%' or doc_code like '%$keyword%' or  rev like '%$keyword%' or  title like '%$keyword%') ")
-            ;
-        if($year>0){
-            $query->where('document_year.year',$year);
+            ->where('version_id', 1);
+        if(strlen($keyword)>0){
+            $query->whereRaw("( doc_date like '%$keyword%' or doc_code like '%$keyword%' or  rev like '%$keyword%' or  title like '%$keyword%') ");
         }
+        if ($year > 0) {
+            $query->where('document_year.year', $year);
+        }
+        
+        // $sql = $query->toSql();
+        // dd($sql);
 
         $documents = $query->distinct()->get();
 
@@ -40,9 +44,9 @@ class DocumentController extends Controller
             $document->attachments = DB::table('document_attachment')->where('doc_id', $document->doc_id)->get();
             $document->years =  DB::table('document_year')->where('doc_id', $document->doc_id)->get();
         }
-        $yearsearch = DB::table('document_year')->select('year')->distinct()->orderBy('year','desc')->get();
+        $yearsearch = DB::table('document_year')->select('year')->distinct()->orderBy('year', 'desc')->get();
         // dd($yearsearch);
-
+        // print_r($documents);exit();
         return view("admin.pages.document.show", compact('title', 'keyword', 'description', 'group', 'group_id', 'documents', 'keyword', 'year', 'yearsearch'));
     }
 
@@ -125,6 +129,7 @@ class DocumentController extends Controller
         $group = DB::table('document_group')->where('doc_group_id', $document->doc_id)->get()->first();
         $attachments = DB::table('document_attachment')->where('doc_id', $id)->get();
         $document_years = DB::table('document_year')->where('doc_id', $id)->get();
+
         $yearchecked = array();
         foreach ($document_years as $y) {
             $yearchecked[] = $y->year;

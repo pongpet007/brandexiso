@@ -61,9 +61,9 @@
                 method="POST">
                 @csrf
                 @if (strtolower($method) == 'add')
-                    @method("POST")
+                    @method('POST')
                 @else
-                    @method("PATCH")
+                    @method('PATCH')
                 @endif
 
                 <div class="card ">
@@ -80,7 +80,8 @@
                             @endphp
                             <div class="col-xl-9">
                                 @foreach ($years as $year)
-                                    <input type="checkbox" name="year[]" id="year{{ $year }}" value="{{ $year }}" {{ in_array($year,$yearchecked)?' checked ':'' }} />
+                                    <input type="checkbox" name="year[]" id="year{{ $year }}"
+                                        value="{{ $year }}" {{ in_array($year, $yearchecked) ? ' checked ' : '' }} />
                                     <label for="year{{ $year }}">{{ $year }}</label><br />
                                 @endforeach
                             </div>
@@ -91,12 +92,18 @@
                             </div>
                             @php
                                 $versions = ['1' => 'New version', '2' => 'Archive version'];
-                                $version_id = strlen(old('version_id')) > 0 ? old('version_id') : (isset($document) ? $document->version_id : '');
+                                $version_id =
+                                    strlen(old('version_id')) > 0
+                                        ? old('version_id')
+                                        : (isset($document)
+                                            ? $document->version_id
+                                            : '');
                             @endphp
                             <div class="col-xl-9">
                                 <select name="version_id" id="version_id" class="form-control">
                                     @foreach ($versions as $key => $version)
-                                        <option value="{{$key}}" {{ $version_id == $key ? ' selected ' : '' }}>
+                                        <option value="{{ $key }}"
+                                            {{ $version_id == $key ? ' selected ' : '' }}>
                                             {{ $version }}</option>
                                     @endforeach
                                 </select>
@@ -107,7 +114,12 @@
                                 Document Group
                             </div>
                             @php
-                                $doc_group_id = strlen(old('doc_group_id')) > 0 ? old('doc_group_id') : (isset($document) ? $document->doc_group_id : '');
+                                $doc_group_id =
+                                    strlen(old('doc_group_id')) > 0
+                                        ? old('doc_group_id')
+                                        : (isset($document)
+                                            ? $document->doc_group_id
+                                            : '');
                             @endphp
                             <div class="col-xl-9">
                                 <select name="doc_group_id" id="doc_group_id" class="form-control">
@@ -136,7 +148,12 @@
                                 Code
                             </div>
                             @php
-                                $doc_code = strlen(old('doc_code')) > 0 ? old('doc_code') : (isset($document) ? $document->doc_code : '');
+                                $doc_code =
+                                    strlen(old('doc_code')) > 0
+                                        ? old('doc_code')
+                                        : (isset($document)
+                                            ? $document->doc_code
+                                            : '');
                             @endphp
                             <div class="col-xl-9">
                                 <input type="text" class="form-control" name="doc_code"
@@ -151,7 +168,8 @@
                                 $rev = strlen(old('rev')) > 0 ? old('rev') : (isset($document) ? $document->rev : '');
                             @endphp
                             <div class="col-xl-9">
-                                <input type="text" class="form-control" name="rev" value="{{ $rev }}" />
+                                <input type="text" class="form-control" name="rev"
+                                    value="{{ $rev }}" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -159,7 +177,12 @@
                                 Date
                             </div>
                             @php
-                                $doc_date = strlen(old('doc_date')) > 0 ? old('doc_date') : (strlen($document->doc_date) > 0 ? $document->doc_date : date('Y-m-d'));
+                                $doc_date =
+                                    strlen(old('doc_date')) > 0
+                                        ? old('doc_date')
+                                        : (strlen($document->doc_date) > 0
+                                            ? $document->doc_date
+                                            : date('Y-m-d'));
                             @endphp
                             <div class="col-xl-9">
                                 <input type="text" class="form-control datepicker" name="doc_date"
@@ -171,10 +194,16 @@
                                 Title
                             </div>
                             @php
-                                $title = strlen(old('title')) > 0 ? old('title') : (isset($document) ? $document->title : '');
+                                $title =
+                                    strlen(old('title')) > 0
+                                        ? old('title')
+                                        : (isset($document)
+                                            ? $document->title
+                                            : '');
                             @endphp
                             <div class="col-xl-9">
-                                <input type="text" class="form-control" name="title" value="{{ $title }}" />
+                                <input type="text" class="form-control" name="title"
+                                    value="{{ $title }}" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -182,11 +211,15 @@
                                 Detail
                             </div>
                             @php
-                                $detail = strlen(old('detail')) > 0 ? old('detail') : (isset($document) ? $document->detail : '');
+                                $detail =
+                                    strlen(old('detail')) > 0
+                                        ? old('detail')
+                                        : (isset($document)
+                                            ? $document->detail
+                                            : '');
                             @endphp
                             <div class="col-xl-9">
-                                <textarea class="form-control ckeditorx" name="detail" id="detail" cols="30"
-                                    rows="10">{{ $detail }}</textarea>
+                                <textarea class="form-control ckeditorx" name="detail" id="detail" cols="30" rows="10">{{ $detail }}</textarea>
 
                             </div>
                         </div>
@@ -195,11 +228,15 @@
                                 Remark
                             </div>
                             @php
-                                $remark = strlen(old('remark')) > 0 ? old('remark') : (isset($document) ? $document->remark : '');
+                                $remark =
+                                    strlen(old('remark')) > 0
+                                        ? old('remark')
+                                        : (isset($document)
+                                            ? $document->remark
+                                            : '');
                             @endphp
                             <div class="col-xl-9">
-                                <textarea class="form-control" name="remark" id="remark" cols="30"
-                                    rows="2">{{ $remark }}</textarea>
+                                <textarea class="form-control" name="remark" id="remark" cols="30" rows="2">{{ $remark }}</textarea>
                             </div>
                         </div>
 
@@ -223,7 +260,7 @@
                 <div class="card-body">
                     <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method("post")
+                        @method('post')
                         <div class="row">
                             <div class="col-xl-3">
                                 <select name="filestatus" id="filestatus" class="form-control">

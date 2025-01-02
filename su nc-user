@@ -1,0 +1,175 @@
+SU(1)                            User Commands                           SU(1)
+
+[1mNAME[0m
+       su - run a command with substitute user and group ID
+
+[1mSYNOPSIS[0m
+       [1msu [22m[options] [[1m-[22m] [[4muser[24m [[4margument[24m...]]
+
+[1mDESCRIPTION[0m
+       [1msu [22mallows to run commands with a substitute user and group ID.
+
+       When  called  without  arguments, [1msu [22mdefaults to running an interactive
+       shell as [4mroot[24m.
+
+       For backward compatibility, [1msu  [22mdefaults  to  not  change  the  current
+       directory  and  to  only  set  the environment variables [1mHOME [22mand [1mSHELL[0m
+       (plus [1mUSER [22mand [1mLOGNAME [22mif the target [4muser[24m is not root).  It  is  recom‐
+       mended  to always use the [1m--login [22moption (instead of its shortcut [1m-[22m) to
+       avoid side effects caused by mixing environments.
+
+       This version of [1msu [22muses PAM for  authentication,  account  and  session
+       management.   Some  configuration options found in other [1msu [22mimplementa‐
+       tions, such as support for a wheel group, have  to  be  configured  via
+       PAM.
+
+       [1msu  [22mis mostly designed for unprivileged users, the recommended solution
+       for privileged users (e.g. scripts executed by root) is to use non-set-
+       user-ID  command  [1mrunuser[22m(1)  that  does not require authentication and
+       provide separate PAM configuration. If the PAM session is not  required
+       at all then the recommend solution is to use command [1msetpriv[22m(1).
+
+[1mOPTIONS[0m
+       [1m-c[22m, [1m--command[22m=[4mcommand[0m
+              Pass [4mcommand[24m to the shell with the [1m-c [22moption.
+
+       [1m-f[22m, [1m--fast[0m
+              Pass  [1m-f [22mto the shell, which may or may not be useful, depending
+              on the shell.
+
+       [1m-g[22m, [1m--group[22m=[4mgroup[0m
+              Specify the primary group.  This option is available to the root
+              user only.
+
+       [1m-G[22m, [1m--supp-group[22m=[4mgroup[0m
+              Specify  a  supplemental group.  This option is available to the
+              root user only.  The first specified supplementary group is also
+              used as a primary group if the option [1m--group [22mis unspecified.
+
+       [1m-[22m, [1m-l[22m, [1m--login[0m
+              Start  the shell as a login shell with an environment similar to
+              a real login:
+
+                 o      clears all the environment variables except [1mTERM[0m
+
+                 o      initializes the  environment  variables  [1mHOME[22m,  [1mSHELL[22m,
+                        [1mUSER[22m, [1mLOGNAME[22m, and [1mPATH[0m
+
+                 o      changes to the target user's home directory
+
+                 o      sets  argv[0] of the shell to '[1m-[22m' in order to make the
+                        shell a login shell
+
+       [1m-m[22m, [1m-p[22m, [1m--preserve-environment[0m
+              Preserve the entire environment, i.e.  it  does  not  set  [1mHOME[22m,
+              [1mSHELL[22m,  [1mUSER  [22mnor [1mLOGNAME[22m.  This option is ignored if the option
+              [1m--login [22mis specified.
+
+       [1m-P[22m, [1m--pty[0m
+              Create pseudo-terminal for the session. The independent terminal
+              provides  better  security  as user does not share terminal with
+              the original session.  This allow to avoid TIOCSTI ioctl  termi‐
+              nal injection and another security attacks against terminal file
+              descriptors. The all session is also possible to move  to  back‐
+              ground  (e.g.  "su  --pty  -  usename -c application &"). If the
+              pseudo-terminal is enabled then su  command  works  as  a  proxy
+              between the sessions (copy stdin and stdout).
+
+              This  feature  is EXPERIMENTAL for now and may be removed in the
+              next releases.
+
+       [1m-s[22m, [1m--shell[22m=[4mshell[0m
+              Run the specified [4mshell[24m instead of the default.   The  shell  to
+              run is selected according to the following rules, in order:
+
+                 o      the shell specified with [1m--shell[0m
+
+                 o      the shell specified in the environment variable [1mSHELL[22m,
+                        if the [1m--preserve-environment [22moption is used
+
+                 o      the shell listed in the passwd  entry  of  the  target
+                        user
+
+                 o      /bin/sh
+
+              If  the  target  user has a restricted shell (i.e. not listed in
+              /etc/shells), the [1m--shell [22moption and the [1mSHELL [22menvironment vari‐
+              ables are ignored unless the calling user is root.
+
+       [1m--session-command=[4m[22mcommand[0m
+              Same as [1m-c [22mbut do not create a new session.  (Discouraged.)
+
+       [1m-V[22m, [1m--version[0m
+              Display version information and exit.
+
+       [1m-h[22m, [1m--help[0m
+              Display help text and exit.
+
+[1mSIGNALS[0m
+       Upon  receiving  either  [1mSIGINT[22m,  [1mSIGQUIT [22mor [1mSIGTERM[22m, [1msu [22mterminates its
+       child and afterwards terminates itself with the received signal.
+
+[1mCONFIG FILES[0m
+       [1msu [22mreads the [4m/etc/default/su[24m and [4m/etc/login.defs[24m  configuration  files.
+       The following configuration items are relevant for [1msu[22m(1):
+
+       [1mFAIL_DELAY [22m(number)
+           Delay  in  seconds in case of an authentication failure. The number
+           must be a non-negative integer.
+
+       [1mENV_PATH [22m(string)
+           Defines the PATH environment variable  for  a  regular  user.   The
+           default value is [4m/usr/local/bin:/bin:/usr/bin[24m.
+
+       [1mENV_ROOTPATH [22m(string)
+       [1mENV_SUPATH [22m(string)
+           Defines  the PATH environment variable for root.  The default value
+           is [4m/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin[24m.
+
+       [1mALWAYS_SET_PATH [22m(boolean)
+           If set to [4myes[24m and --login and --preserve-environment were not spec‐
+           ified [1msu [22minitializes [1mPATH[22m.
+
+[1mEXIT STATUS[0m
+       [1msu [22mnormally returns the exit status of the command it executed.  If the
+       command was killed by a signal, [1msu [22mreturns the  number  of  the  signal
+       plus 128.
+
+       Exit status generated by [1msu [22mitself:
+
+                 1      Generic error before executing the requested command
+
+                 126    The requested command could not be executed
+
+                 127    The requested command was not found
+
+[1mFILES[0m
+       /etc/pam.d/su    default PAM configuration file
+       /etc/pam.d/su-l  PAM configuration file if --login is specified
+       /etc/default/su  command specific logindef config file
+       /etc/login.defs  global logindef config file
+
+[1mNOTES[0m
+       For  security reasons [1msu [22malways logs failed log-in attempts to the btmp
+       file, but it does not write to the lastlog file at all.  This  solution
+       allows to control [1msu [22mbehavior by PAM configuration.  If you want to use
+       the pam_lastlog module to print warning  message  about  failed  log-in
+       attempts  then the pam_lastlog has to be configured to update the last‐
+       log file as well. For example by:
+
+              session  required  pam_lastlog.so nowtmp
+
+[1mSEE ALSO[0m
+       [1msetpriv[22m(1), [1mlogin.defs[22m(5), [1mshells[22m(5), [1mpam[22m(8), [1mrunuser[22m(8)
+
+[1mHISTORY[0m
+       This [1msu [22mcommand was derived from coreutils' [1msu[22m, which was based  on  an
+       implementation  by  David MacKenzie. The util-linux has been refactored
+       by Karel Zak.
+
+[1mAVAILABILITY[0m
+       The su command is part of the util-linux package and is available  from
+       Linux   Kernel   Archive  ⟨https://www.kernel.org/pub/linux/utils/util-
+       linux/⟩.
+
+util-linux                         July 2014                             SU(1)

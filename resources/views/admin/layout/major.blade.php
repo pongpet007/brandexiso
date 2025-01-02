@@ -20,6 +20,11 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets_admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <style>
+        .sidebar .nav-item .collapse .collapse-inner .collapse-item, .sidebar .nav-item .collapsing .collapse-inner .collapse-item{
+            white-space:unset;
+        }
+    </style>
     @stack('cssother')
 </head>
 
